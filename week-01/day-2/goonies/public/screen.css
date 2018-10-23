@@ -17,10 +17,13 @@ h2 {
   color: red;
 }
 
+.characters > li {
+  display: flex;
+}
+
 .leader {
-  border: 10px solid green;
   padding: 10px;
-  margin: 40px 10px;
+  margin: 10px 10px;
   text-transform: uppercase;
 }
 

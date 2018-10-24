@@ -12,6 +12,9 @@ body {
   padding: 0;
   margin: 0;
   list-style: none;
+  height: 75vh;
+  background-color: rebeccapurple;
+  display: flex;
 }
 
 .flex-item {
@@ -25,4 +28,12 @@ body {
   font-weight: bold;
   font-size: 3rem;
   text-align: center;
+}
+
+.should-be-first {
+  order: -1;
+}
+
+.should-be-last {
+  order: 1;
 }

@@ -68,6 +68,10 @@ h3 {
   font-size: 2.5rem;
 }
 
+.non-leadership {
+  display: none;
+}
+
 section {
   /* Display the individual employees in rows */
   display: flex;
@@ -145,4 +149,26 @@ nav a {
 
 nav a:hover {
   background-color: #5a9090;
+}
+
+@media (min-width: 600px) {
+  body {
+    /* background-color: red; */
+  }
+
+  nav {
+    display: none;
+  }
+
+  section img {
+    width: 400px;
+  }
+
+  .leadership h2 {
+    font-size: 4rem;
+  }
+
+  .non-leadership {
+    display: initial;
+  }
 }

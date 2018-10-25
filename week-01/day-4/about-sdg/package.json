@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "browser-sync start --server \"public\" --files \"public\""
+  },
+  "dependencies": {
+    "browser-sync": "^2.24.7",
+    "stylelint": "^9.5.0",
+    "stylelint-config-standard": "^18.2.0",
+    "surge": "^0.20.1"
+  }
+}

@@ -1,0 +1,148 @@
+/* Import this font from google fonts */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+:root {
+  /* Set a base font size, line-height, and base font */
+  font: 16px / 1 sans-serif;
+}
+
+html {
+  /* Specify the HTML tag should take up the entire vertical space */
+  height: 100%;
+}
+
+body {
+  /* specify there should be no margin on the body */
+  margin: 0;
+
+  /* Ensure the body takes up at least the entire page height */
+  min-height: 100%;
+
+  /* Give the background a nice color */
+  background-color: #f7f0da;
+
+  /* Specify a background image */
+  background-image: url('./images/stamp.svg');
+
+  /* Do not repeat the background image */
+  background-repeat: no-repeat;
+
+  /* Specify a position for the background */
+  background-position: right -25vw bottom -5vw;
+
+  /* Don't scroll the background image as the page does */
+  background-attachment: fixed;
+
+  /* Set the size of the background image */
+  background-size: 90vw;
+
+  /* Font choice */
+  font-family: Source Sans Pro, sans-serif;
+
+  /* Font color */
+  color: #2f3737;
+
+  /* align all the text and images in the center */
+  text-align: center;
+}
+
+h1 {
+  /* center the h1 */
+  text-align: center;
+
+  /* Put 4rem of margin all around the h1 */
+  margin: 4rem;
+}
+
+h2,
+h3 {
+  /* Set a font size for the h2 and h3 */
+  font-size: 1.3rem;
+
+  /* center the h2 and h3 */
+  text-align: center;
+}
+
+.leadership h2 {
+  /* Except make the header larger for the leadership */
+  font-size: 2.5rem;
+}
+
+section {
+  /* Display the individual employees in rows */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  /* Set an auto margin to center them */
+  margin: auto;
+
+  /* A little bit of padding to keep it from the edge */
+  padding: 0 2rem;
+}
+
+section p {
+  font-size: 1.2rem;
+}
+
+section img {
+  /* Add a little padding and a border around the images */
+  padding: 0.1rem;
+  border: 0.1rem solid #135e5e;
+  width: 200px;
+  background-color: #f7f0da;
+}
+
+section .technology img {
+  /* Add a little MORE padding and a border around the technology images */
+  padding: 2rem;
+}
+
+.employee p,
+.technology p {
+  /* Set the maximum width for the paragraph to allow it to wrap */
+  max-width: 200px;
+  padding: 2rem;
+}
+
+.employee {
+  /* place a little margin below each employee for when they wrap */
+  margin-bottom: 2rem;
+}
+
+nav {
+  color: #f7f0da;
+  background-color: #76bcbb;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav img {
+  height: 2rem;
+  padding: 1.5rem;
+  object-fit: cover;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+nav li {
+  padding: 1.5rem;
+  font-size: 2rem;
+}
+
+nav a {
+  padding: 0.5rem;
+  color: #f7f0da;
+  text-shadow: 1px 1px 0 rgba(47, 38, 10, 0.5);
+  text-decoration: none;
+}
+
+nav a:hover {
+  background-color: #5a9090;
+}

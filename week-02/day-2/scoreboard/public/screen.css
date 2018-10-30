@@ -7,3 +7,20 @@ body {
   min-height: 100%;
   font: 16px / 1 sans-serif;
 }
+
+h1 {
+  text-align: center;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+p {
+  font-size: 3rem;
+}
+
+ul {
+  list-style: none;
+}

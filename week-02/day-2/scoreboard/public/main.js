@@ -33,6 +33,19 @@ let subtractOnePointFromTeamTwo = () => {
   ptagCount.textContent = countForTeamTwo
 }
 
+let updateTeamOneName = () => {
+  // Find the team one name input element
+  let teamOneNameInput = document.querySelector('input#new-team-one-name')
+
+  // Read whatever is in that input
+  let newName = teamOneNameInput.value
+
+  // Change the team one name to that value
+  // find that element, change it's textContent
+  let teamOneName = document.querySelector('h2.team-one-name')
+  teamOneName.textContent = newName
+}
+
 const main = () => {
   //find the ptag
   let ptagCount = document.querySelector('p.score-for-team-one')
@@ -50,7 +63,9 @@ const main = () => {
   //when the add buttom for team 1 is clicked, increment count and update ptag
   addOneButton.addEventListener('click', addOnePointForTeamOne)
 
-  let subtractOneButton = document.querySelector('button.subtract-from-team-one')
+  let subtractOneButton = document.querySelector(
+    'button.subtract-from-team-one'
+  )
   subtractOneButton.addEventListener('click', subtractOnePointFromTeamOne)
 
   //find add 1 button for team 2
@@ -59,8 +74,18 @@ const main = () => {
   //when the add buttom for team 2 is clicked, increment count and update ptag
   addOneButtonForTeamTwo.addEventListener('click', addOnePointForTeamTwo)
 
-  let subtractOneButtonFromTeamTwo = document.querySelector('button.subtract-from-team-two')
-  subtractOneButtonFromTeamTwo.addEventListener('click', subtractOnePointFromTeamTwo)
+  let subtractOneButtonFromTeamTwo = document.querySelector(
+    'button.subtract-from-team-two'
+  )
+  subtractOneButtonFromTeamTwo.addEventListener(
+    'click',
+    subtractOnePointFromTeamTwo
+  )
+
+  let updateTeamOneNameButton = document.querySelector(
+    'button.update-team-one-name'
+  )
+  updateTeamOneNameButton.addEventListener('click', updateTeamOneName)
 }
 
 document.addEventListener('DOMContentLoaded', main)

@@ -1,0 +1,11 @@
+- DOM
+  - Stands for the `(D)`ocument `(O)`bject `(M)`odel
+  -   [DOM description from MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
+- How to get stuff on screen
+  - `querySelector` and `textContent`
+- How to specify different elements on the screen
+  - `querySelector` using classes, IDs, or any other CSS style selector that uniquely identifies the element
+- Math exercises (code katas)
+- Numbers to strings and strings to numbers
+  - `toString` and `parseInt`
+

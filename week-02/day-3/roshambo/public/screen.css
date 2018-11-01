@@ -1,0 +1,48 @@
+html {
+  height: 100%;
+}
+
+body {
+  text-align: center;
+  margin: 0;
+  min-height: 100%;
+  font: 16px / 1 sans-serif;
+  background-color: rgb(243, 139, 41);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  background-image: url(/images/banner.png);
+  height: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: transparent;
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+}
+
+.rock {
+  width: 50px;
+  height: 50px;
+  color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(./images/rock.png);
+}

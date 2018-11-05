@@ -95,6 +95,26 @@ let playerHand = []
 // This array will store the dealer's hand
 let dealerHand = []
 
+const getTheValueOfThePlayerHand = () => {
+  let valueOfPlayersHand = 0
+  playerHand.forEach(card => {
+    valueOfPlayersHand = valueOfPlayersHand + card.value
+  })
+
+  return valueOfPlayersHand
+}
+
+const declareWinnerOrLoser = message => {
+  let gameStatus = document.querySelector('header p')
+  gameStatus.textContent = message
+
+  let hitButton = document.querySelector('.hit')
+  hitButton.disabled = 'disabled'
+
+  let stayButton = document.querySelector('.stay')
+  stayButton.disabled = 'disabled'
+}
+
 const dealCardToPlayer = () => {
   let playerHandList = document.querySelector('.player-hand')
 
@@ -104,6 +124,15 @@ const dealCardToPlayer = () => {
   let card = deck.pop()
 
   playerHand.push(card)
+
+  let playerHandTotal = document.querySelector('.playerHandTotal')
+  playerHandTotal.textContent = getTheValueOfThePlayerHand()
+
+  // If the player goes over 21
+  if (getTheValueOfThePlayerHand() > 21) {
+    // Display the player busted
+    declareWinnerOrLoser('Player Busted')
+  }
 
   // Add this card to the user interface
 
@@ -115,6 +144,62 @@ const dealCardToPlayer = () => {
 
   // Append that LI to the UL
   playerHandList.appendChild(newCardItem)
+}
+
+const getTheValueOfTheDealerHand = () => {
+  let valueOfDealerHand = 0
+  dealerHand.forEach(card => {
+    valueOfDealerHand = valueOfDealerHand + card.value
+  })
+
+  return valueOfDealerHand
+}
+
+const dealOneCardToTheDealer = () => {
+  let card = deck.pop()
+
+  dealerHand.push(card)
+
+  // Add this card to the user interface
+
+  dealerHandList = document.querySelector('.dealer-hand')
+
+  // Create new LI
+  let newCardItem = document.createElement('li')
+
+  // Make the text of the LI be the description of the card
+  newCardItem.textContent = `The ${card.face} of ${card.suit}`
+
+  // Append that LI to the UL
+  dealerHandList.appendChild(newCardItem)
+
+  let dealerHandTotal = document.querySelector('.dealerHandTotal')
+  dealerHandTotal.textContent = getTheValueOfTheDealerHand()
+}
+
+const dealCardsToDealer = () => {
+  let dealerHand = document.querySelector('.dealer-hand')
+  dealerHand.classList.add('shown')
+
+  // - When the player stays (when they click on the stay button)
+  //   - Have the dealer keep taking cards as long as the total value of their hand is 17 or less
+  while (getTheValueOfTheDealerHand() <= 17) {
+    dealOneCardToTheDealer()
+  }
+
+  //   - See who won
+  //     - See if the dealer is over 21, if so, the player wins
+  if (getTheValueOfTheDealerHand() > 21) {
+    declareWinnerOrLoser('Player Wins')
+  } else {
+    //     - Compare the player's hand total to the dealers and see which is higher
+    if (getTheValueOfThePlayerHand() > getTheValueOfTheDealerHand()) {
+      declareWinnerOrLoser('Player Wins')
+    } else {
+      // The dealer wins!
+      declareWinnerOrLoser('Dealer Wins')
+    }
+  }
 }
 
 const main = () => {
@@ -135,13 +220,28 @@ const main = () => {
     dealCardToPlayer()
   }
 
+  for (let count = 0; count < 2; count++) {
+    dealOneCardToTheDealer()
+  }
+
   // Find the hit button
   let hitButton = document.querySelector('.hit')
   // Add an event listener on 'click' that does:
   hitButton.addEventListener('click', dealCardToPlayer)
+
+  let stayButton = document.querySelector('.stay')
+  stayButton.addEventListener('click', dealCardsToDealer)
 
   console.log(playerHand)
   console.log(deck)
 }
 
 document.addEventListener('DOMContentLoaded', main)
+
+// TODO:
+// - While the player is hitting cards:
+//   X Display the total value of the player's hand
+//   X Have the player bust if the value of their hand goes over 21
+// X After someone wins, don't allow any more play
+// - Deal initial two cards to the dealer
+//   X One of these should be face down

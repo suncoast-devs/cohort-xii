@@ -7,3 +7,11 @@ body {
   min-height: 100%;
   font: 16px / 1 sans-serif;
 }
+
+.dealer-hand li:nth-child(1) {
+  display: none;
+}
+
+.dealer-hand.shown li:nth-child(1) {
+  display: initial;
+}

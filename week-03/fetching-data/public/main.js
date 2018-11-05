@@ -13,26 +13,20 @@ const addPersonToUL = person => {
 }
 
 const main = () => {
-  let peopleInSpace = {
-    people: [
-      {
-        name: 'Sergey Prokopyev',
-        craft: 'ISS'
-      },
-      {
-        name: 'Alexander Gerst',
-        craft: 'ISS'
-      },
-      {
-        name: 'Serena Aunon-Chancellor',
-        craft: 'ISS'
-      }
-    ],
-    message: 'success',
-    number: 3
-  }
+  // Lets get that object *LIVE* from the website
+  fetch('http://api.open-notify.org/astros.json')
+    .then(response => {
+      return response.json()
+    })
+    .then(peopleInSpace => {
+      peopleInSpace.people.forEach(addPersonToUL)
+    })
 
-  peopleInSpace.people.forEach(addPersonToUL)
+  addPersonToUL({
+    name: 'Gavin Stark',
+    craft: 'ISS'
+  })
+  console.log('DONE')
 }
 
 document.addEventListener('DOMContentLoaded', main)

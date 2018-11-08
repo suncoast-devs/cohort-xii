@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  font: 16px / 1 sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+h1 {
+  text-align: center;
+  background-image: url(/images/catchy-moon-and-stars-header.jpg);
+  color: white;
+  font-size: 3rem;
+  margin: 0;
+  padding: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  margin: 0 auto;
+  max-width: 20rem;
+}

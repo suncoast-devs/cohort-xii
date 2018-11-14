@@ -40,9 +40,9 @@ let updateTeamOneName = () => {
 
 const main = () => {
   //find the class score-for-team-one and change it's text content to equal whatever is in the variable count
-  document.querySelector('.team-one .score').textContent = count
+  document.querySelector('.score-for-team-one').textContent = count
 
-  document.querySelector('.team-two .score').textContent = countForTeamTwo
+  document.querySelector('.score-for-team-two').textContent = countForTeamTwo
 
   //find add 1 button for team 1
   //when the add buttom for team 1 is clicked, increment count and update ptag

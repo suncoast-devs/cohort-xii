@@ -1,52 +1,50 @@
 <!DOCTYPE html>
 <html>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scoreboard</title>
+    <link rel="stylesheet" href="/screen.css" />
+  </head>
 
-<head lang="en">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Scoreboard</title>
-  <link rel="stylesheet" href="/screen.css">
-</head>
+  <body>
+    <h1>My Scoreboard</h1>
+    <main>
+      <section class="team-one">
+        <h2 class="name">Team 1</h2>
+        <p class="score-for-team-one">10</p>
+        <ul>
+          <li>
+            <label for="new-team-one-name">Update Team 1 Name</label>
+            <input id="new-team-one-name" type="text" />
+            <button class="update-team-one-name">Update</button>
+          </li>
+          <li>
+            <label>Update Team 1 Score</label>
+            <button class="add">Add 1</button>
+            <button class="subtract">Subtract 1</button>
+          </li>
+        </ul>
+      </section>
 
-<body>
-  <h1>My Scoreboard</h1>
-  <main>
-    <section class="team-one">
-      <h2 class="name">Team 1</h2>
-      <p class="score">10</p>
-      <ul>
-        <li>
-          <label for="new-team-one-name">Update Team 1 Name</label>
-          <input id="new-team-one-name" type="text" />
-          <button class='update-team-one-name'>Update</button>
-        </li>
-        <li>
-          <label>Update Team 1 Score</label>
-          <button class="add">Add 1</button>
-          <button class="subtract">Subtract 1</button>
-        </li>
-      </ul>
-    </section>
+      <section class="team-two">
+        <h2 class="name">Team 2</h2>
+        <p class="score-for-team-two">10</p>
+        <ul>
+          <li>
+            <label>Update Team 2 Name</label>
+            <input class="new-team-two-name" type="text" />
+            <button class="update-team-two-name">Update</button>
+          </li>
+          <li>
+            <label>Update Team 2 Score</label>
+            <button class="add">Add 1</button>
+            <button class="subtract">Subtract 1</button>
+          </li>
+        </ul>
+      </section>
+    </main>
 
-    <section class="team-two">
-      <h2 class='name'>Team 2</h2>
-      <p class="score">10</p>
-      <ul>
-        <li>
-          <label>Update Team 2 Name</label>
-          <input class='new-team-two-name' type="text" />
-          <button class='update-team-two-name'>Update</button>
-        </li>
-        <li>
-          <label>Update Team 2 Score</label>
-          <button class="add">Add 1</button>
-          <button class="subtract">Subtract 1</button>
-        </li>
-      </ul>
-    </section>
-  </main>
-
-  <script src="/main.js" charset="utf-8"></script>
-</body>
-
+    <script src="/main.js" charset="utf-8"></script>
+  </body>
 </html>

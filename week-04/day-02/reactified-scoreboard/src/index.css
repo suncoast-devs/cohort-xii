@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+:root {
+  font: 16px / 1 sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background-color: rgb(247, 240, 219);
+  color: rgb(55, 55, 55);
+  font-family: Source Sans Pro, sans-serif;
+}
+
+ul,
+li,
+h1,
+h2,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0;
+  padding: 3rem;
+  text-align: center;
+  background-color: rgb(88, 144, 144);
+  color: rgb(247, 240, 219);
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+section {
+  margin: 3rem;
+  padding: 1rem;
+  border: 0.5rem solid rgb(137, 87, 127);
+}
+
+section h2 {
+  text-align: center;
+  margin: 2rem;
+}
+
+section p {
+  text-align: center;
+  font-size: 2rem;
+  margin: 2rem;
+}
+
+section label,
+section input,
+section button {
+  margin-right: 0.2rem;
+}
+
+section ul {
+  margin: 2rem;
+  list-style: none;
+}
+
+section li {
+  margin: 1rem;
+}

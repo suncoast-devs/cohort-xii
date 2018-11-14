@@ -5,40 +5,48 @@ class Team extends Component {
     super(props)
 
     this.state = {
+      teamName: props.teamName,
       score: props.initialScore
     }
   }
 
-  addOneToScore = () => {
+  addOneToScore = event => {
     this.setState({
       score: this.state.score + 1
     })
   }
 
-  subtractOneFromScore = () => {
+  subtractOneFromScore = event => {
     this.setState({
       score: this.state.score - 1
     })
   }
+
+  updateTeamName = event => {
+    this.setState({
+      teamName: event.target.value
+    })
+  }
+
   render() {
     return (
-      <section class="team-one">
-        <h2 class="name">Team {this.props.teamNumber}</h2>
-        <p class="score-for-team-one">{this.state.score}</p>
+      <section>
+        <h2>{this.state.teamName}</h2>
+        <p>{this.state.score}</p>
         <ul>
           <li>
-            <label for="new-team-one-name">Update Team 1 Name</label>
-            <input id="new-team-one-name" type="text" />
-            <button class="update-team-one-name">Update</button>
+            <label>Update Team 1 Name</label>
+            <input
+              type="text"
+              value={this.state.teamName}
+              onChange={this.updateTeamName}
+            />
+            <button>Update</button>
           </li>
           <li>
             <label>Update Team 1 Score</label>
-            <button class="add" onClick={this.addOneToScore}>
-              Add 1
-            </button>
-            <button class="subtract" onClick={this.subtractOneFromScore}>
-              Subtract 1
-            </button>
+            <button onClick={this.addOneToScore}>Add 1</button>
+            <button onClick={this.subtractOneFromScore}>Subtract 1</button>
           </li>
         </ul>
       </section>

@@ -1,18 +1,43 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './App.css'
 import Team from './Team'
 
 class App extends Component {
   render() {
+    let teams = [
+      {
+        id: 'all-star',
+        teamName: 'SDG All Stars',
+        initialScore: 0
+      },
+      {
+        id: 'c11',
+        teamName: 'Cohort XI',
+        initialScore: 42
+      },
+      {
+        id: 'c12',
+        teamName: 'Cohort XII',
+        initialScore: 3
+      },
+      {
+        id: 'staff',
+        teamName: 'Staff',
+        initalScore: 5
+      }
+    ]
+
     return (
       <div>
         <h1>My Scoreboard</h1>
         <main>
-          <Team teamNumber="1" initialScore={0} />
-          <Team teamNumber="2" initialScore={42} />
-          <Team teamNumber="3" initialScore={3} />
-          <Team teamNumber="4" initialScore={5} />
+          {teams.map(team => (
+            <Team
+              key={team.id}
+              teamName={team.teamName}
+              initialScore={team.initialScore}
+            />
+          ))}
         </main>
       </div>
     )

@@ -70,3 +70,7 @@ section ul {
 section li {
   margin: 1rem;
 }
+
+.redtext {
+  color: red;
+}

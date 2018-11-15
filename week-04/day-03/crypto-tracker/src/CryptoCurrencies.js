@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import CryptoCurrency from './CryptoCurrency'
 
 class CryptoCurrencies extends Component {
@@ -6,18 +7,31 @@ class CryptoCurrencies extends Component {
     super(props)
 
     this.state = {
-      coins: []
+      coins: [],
+      ignoredCoins: [52]
     }
   }
 
+  addCurrencyIDToIgnoredCoins = currencyID => {
+    let newIgnoredCoins = this.state.ignoredCoins
+
+    newIgnoredCoins.push(currencyID)
+
+    this.setState({
+      ignoredCoins: newIgnoredCoins
+    })
+  }
+
   fetchCoins = () => {
-    fetch(`https://api.coinmarketcap.com/v2/ticker/?limit=${this.props.count}`)
-      .then(response => response.json())
-      .then(apiData => {
-        this.setState({
-          coins: apiData['data']
-        })
+    let url = `https://api.coinmarketcap.com/v2/ticker/?limit=${
+      this.props.count
+    }`
+
+    axios.get(url).then(response => {
+      this.setState({
+        coins: response.data['data']
       })
+    })
   }
 
   componentDidMount = () => {
@@ -46,16 +60,23 @@ class CryptoCurrencies extends Component {
           </th>
         </thead>
         <tbody>
-          {Object.values(this.state.coins).map(currency => (
-            <CryptoCurrency
-              key={currency.id}
-              name={currency.name}
-              symbol={currency.symbol}
-              price={currency.quotes.USD.price}
-              id={currency.id}
-              highPrice={this.props.highPrice}
-            />
-          ))}
+          {Object.values(this.state.coins).map(currency => {
+            if (this.state.ignoredCoins.includes(currency.id)) {
+              return null
+            }
+
+            return (
+              <CryptoCurrency
+                key={currency.id}
+                name={currency.name}
+                symbol={currency.symbol}
+                price={currency.quotes.USD.price}
+                id={currency.id}
+                highPrice={this.props.highPrice}
+                addCurrencyIDToIgnoredCoins={this.addCurrencyIDToIgnoredCoins}
+              />
+            )
+          })}
         </tbody>
       </table>
     )

@@ -12,9 +12,17 @@ class CryptoCurrency extends Component {
     return this.props.price.toFixed(2)
   }
 
+  classNameBasedOnPrice = () => {
+    if (this.props.price > this.props.highPrice) {
+      return 'high-price'
+    } else {
+      return ''
+    }
+  }
+
   render() {
     return (
-      <tr>
+      <tr className={this.classNameBasedOnPrice()}>
         <td>{this.props.name}</td>
         <td>{this.props.symbol}</td>
         <td>{this.price()}</td>

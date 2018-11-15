@@ -1,11 +1,34 @@
 import React, { Component } from 'react'
 import CryptoCurrency from './CryptoCurrency'
-import currencies from './currencies.json'
 
 class CryptoCurrencies extends Component {
-  render() {
-    const data = currencies['data']
+  constructor(props) {
+    super(props)
 
+    this.state = {
+      coins: []
+    }
+  }
+
+  fetchCoins = () => {
+    fetch(`https://api.coinmarketcap.com/v2/ticker/?limit=${this.props.count}`)
+      .then(response => response.json())
+      .then(apiData => {
+        this.setState({
+          coins: apiData['data']
+        })
+      })
+  }
+
+  componentDidMount = () => {
+    this.fetchCoins()
+
+    // Every 10 seconds, please call the function
+    // this.fetchCoins
+    setInterval(this.fetchCoins, 10 * 1000)
+  }
+
+  render() {
     return (
       <table>
         <thead>
@@ -23,12 +46,14 @@ class CryptoCurrencies extends Component {
           </th>
         </thead>
         <tbody>
-          {Object.values(data).map(currency => (
+          {Object.values(this.state.coins).map(currency => (
             <CryptoCurrency
+              key={currency.id}
               name={currency.name}
               symbol={currency.symbol}
               price={currency.quotes.USD.price}
               id={currency.id}
+              highPrice={this.props.highPrice}
             />
           ))}
         </tbody>

@@ -8,12 +8,16 @@ class CryptoCurrency extends Component {
     `
   }
 
+  price = () => {
+    return this.props.price.toFixed(2)
+  }
+
   render() {
     return (
       <tr>
         <td>{this.props.name}</td>
         <td>{this.props.symbol}</td>
-        <td>{this.props.price}</td>
+        <td>{this.price()}</td>
         <td>
           <img src={this.logo()} />
         </td>

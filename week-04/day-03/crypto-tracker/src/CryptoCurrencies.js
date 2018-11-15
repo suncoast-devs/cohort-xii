@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import CryptoCurrency from './CryptoCurrency'
+import currencies from './currencies.json'
 
 class CryptoCurrencies extends Component {
   render() {
+    const data = currencies['data']
+
     return (
       <table>
         <thead>
@@ -20,9 +23,14 @@ class CryptoCurrencies extends Component {
           </th>
         </thead>
         <tbody>
-          <CryptoCurrency name="Bitcoin" symbol="BTC" price={1000.0} id={1} />
-          <CryptoCurrency name="Litecoin" symbol="LTC" price={42.0} id={2} />
-          <CryptoCurrency name="XRP" symbol="XRP" price={0.455} id={52} />
+          {Object.values(data).map(currency => (
+            <CryptoCurrency
+              name={currency.name}
+              symbol={currency.symbol}
+              price={currency.quotes.USD.price}
+              id={currency.id}
+            />
+          ))}
         </tbody>
       </table>
     )

@@ -35,6 +35,6 @@ Flag a cell
   - DONE POST /games/{id}/flag
   - DONE Take what the API gives back and put that in the state
 
-- Handle a game over (display something to the user)
+- DONE Handle a game over (display something to the user)
 
-- Handle easy/intermediate/expert
+- DONE Handle easy/intermediate/expert

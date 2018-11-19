@@ -45,6 +45,33 @@ table {
   background-color: #aaa;
 }
 
+.cell-1 {
+  color: red;
+}
+.cell-2 {
+  color: green;
+}
+.cell-3 {
+  color: blue;
+}
+.cell-4 {
+  color: orange;
+}
+.cell-5 {
+  color: purple;
+}
+.cell-6 {
+  color: yellow;
+}
+
+.cell-7 {
+  color: rebeccapurple;
+}
+
+.cell-8 {
+  color: indigo;
+}
+
 td {
   cursor: pointer;
   width: 20px;

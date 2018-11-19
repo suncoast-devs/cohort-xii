@@ -7,20 +7,22 @@ class App extends Component {
     super(props)
 
     this.state = {
+      playing: false,
+
       game: {
         id: 1,
         board: [
-          ['*', ' ', '3', ' ', ' ', 'F', ' ', ' '],
-          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-          [' ', ' ', '*', ' ', ' ', ' ', ' ', ' '],
           [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
           [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
           [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
           [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-          [' ', ' ', ' ', ' ', ' ', ' ', '5', ' ']
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
         ],
         state: 'new',
-        mines: 7
+        mines: 10
       }
     }
   }
@@ -29,9 +31,26 @@ class App extends Component {
     axios.post('https://minesweeper-api.herokuapp.com/games').then(response => {
       console.log(response.data)
       this.setState({
+        playing: true,
         game: response.data
       })
     })
+  }
+
+  headerText = () => {
+    if (this.state.playing) {
+      return `Game #${this.state.game.id}`
+    } else {
+      return 'Start a new game!!!'
+    }
+  }
+
+  minesText = () => {
+    if (this.state.playing) {
+      return `${this.state.game.mines} mines left`
+    } else {
+      return ''
+    }
   }
 
   render() {
@@ -51,7 +70,7 @@ class App extends Component {
             </tr>
             <tr>
               <td className="header not-playing" colSpan="8">
-                Start a new game!
+                {this.headerText()}
               </td>
             </tr>
             <tr>
@@ -136,7 +155,7 @@ class App extends Component {
             </tr>
             <tr>
               <td className="header" colSpan="8">
-                {this.state.game.mines} mines left
+                {this.minesText()}
               </td>
             </tr>
           </tbody>

@@ -4,7 +4,7 @@ New Game
 - DONE Use the new game API to request a new game
   - POST /games
   - Take what the API gives back and put that in the state
-- Display the number of the game we are playing
+- DONE Display the number of the game we are playing
 
 Draw the board
 
@@ -12,7 +12,7 @@ Draw the board
 - DONE comes from the state, the API calls this `board` (Render based on the state)
 - DONE So for each element in the board, put
   the appropriate character in the table
-- Update the number of mines remaining
+- DONE Update the number of mines remaining
 
 Check a cell
 

@@ -191,7 +191,7 @@ class App extends Component {
               </td>
             </tr>
             <tr>
-              <td className="header not-playing" colSpan={this.boardSize()}>
+              <td className="header" colSpan={this.boardSize()}>
                 {this.headerText()}
               </td>
             </tr>

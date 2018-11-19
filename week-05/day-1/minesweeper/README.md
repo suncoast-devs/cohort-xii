@@ -17,12 +17,12 @@ Draw the board
 Check a cell
 
 - Tell the API that the user checked a cell
-  - We need to tell it:
+  - DONE We need to tell it:
     - id (number of the game)
     - row
     - col
-  - POST /games/{id}/check
-  - Take what the API gives back and put that in the state
+  - DONE POST /games/{id}/check
+  - DONE Take what the API gives back and put that in the state
 
 Flag a cell
 

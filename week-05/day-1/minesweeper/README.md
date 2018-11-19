@@ -26,14 +26,14 @@ Check a cell
 
 Flag a cell
 
-- Tell the API that the user flagged a cell
+- DONE Tell the API that the user flagged a cell
 
-  - We need to tell it:
+  - DONE We need to tell it:
     - id (number of the game)
     - row
     - col
-  - POST /games/{id}/flag
-  - Take what the API gives back and put that in the state
+  - DONE POST /games/{id}/flag
+  - DONE Take what the API gives back and put that in the state
 
 - Handle a game over (display something to the user)
 

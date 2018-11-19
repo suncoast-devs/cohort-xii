@@ -44,6 +44,31 @@ class App extends Component {
   //   id:  Get from the state
   //   row: argument
   //   col: argument
+  flagCell = (row, col) => {
+    //- POST /games/{id}/check
+
+    axios
+      .post(
+        `https://minesweeper-api.herokuapp.com/games/${
+          this.state.game.id
+        }/flag`,
+        {
+          id: this.state.game.id,
+          row: row,
+          col: col
+        }
+      )
+      .then(response => {
+        this.setState({
+          game: response.data
+        })
+      })
+  }
+
+  // Need:
+  //   id:  Get from the state
+  //   row: argument
+  //   col: argument
   checkCell = (row, col) => {
     //- POST /games/{id}/check
 
@@ -67,6 +92,14 @@ class App extends Component {
 
   headerText = () => {
     if (this.state.playing) {
+      if (this.state.game.state === 'won') {
+        return 'You win!'
+      }
+
+      if (this.state.game.state === 'lost') {
+        return 'You lose!'
+      }
+
       return `Game #${this.state.game.id}`
     } else {
       return 'Start a new game!!!'
@@ -78,6 +111,14 @@ class App extends Component {
       return `${this.state.game.mines} mines left`
     } else {
       return ''
+    }
+  }
+
+  buttonText = () => {
+    if (this.state.game.state === 'lost') {
+      return '😫'
+    } else {
+      return '😄'
     }
   }
 
@@ -93,7 +134,7 @@ class App extends Component {
                   <option value="1">Intermediate</option>
                   <option value="2">Expert</option>
                 </select>
-                <button onClick={this.newGame}>😄</button>
+                <button onClick={this.newGame}>{this.buttonText()}</button>
               </td>
             </tr>
             <tr>
@@ -104,48 +145,56 @@ class App extends Component {
             <tr>
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={0}
                 col={0}
                 value={this.state.game.board[0][0]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={0}
                 col={1}
                 value={this.state.game.board[0][1]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={0}
                 col={2}
                 value={this.state.game.board[0][2]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={0}
                 col={3}
                 value={this.state.game.board[0][3]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={0}
                 col={4}
                 value={this.state.game.board[0][4]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={0}
                 col={5}
                 value={this.state.game.board[0][5]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={0}
                 col={6}
                 value={this.state.game.board[0][6]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={0}
                 col={7}
                 value={this.state.game.board[0][7]}
@@ -154,48 +203,56 @@ class App extends Component {
             <tr>
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={1}
                 col={0}
                 value={this.state.game.board[1][0]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={1}
                 col={1}
                 value={this.state.game.board[1][1]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={1}
                 col={2}
                 value={this.state.game.board[1][2]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={1}
                 col={3}
                 value={this.state.game.board[1][3]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={1}
                 col={4}
                 value={this.state.game.board[1][4]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={1}
                 col={5}
                 value={this.state.game.board[1][5]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={1}
                 col={6}
                 value={this.state.game.board[1][6]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={1}
                 col={7}
                 value={this.state.game.board[1][7]}
@@ -204,48 +261,56 @@ class App extends Component {
             <tr>
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={2}
                 col={0}
                 value={this.state.game.board[2][0]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={2}
                 col={1}
                 value={this.state.game.board[2][1]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={2}
                 col={2}
                 value={this.state.game.board[2][2]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={2}
                 col={3}
                 value={this.state.game.board[2][3]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={2}
                 col={4}
                 value={this.state.game.board[2][4]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={2}
                 col={5}
                 value={this.state.game.board[2][5]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={2}
                 col={6}
                 value={this.state.game.board[2][6]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={2}
                 col={7}
                 value={this.state.game.board[2][7]}
@@ -254,48 +319,56 @@ class App extends Component {
             <tr>
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={3}
                 col={0}
                 value={this.state.game.board[3][0]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={3}
                 col={1}
                 value={this.state.game.board[3][1]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={3}
                 col={2}
                 value={this.state.game.board[3][2]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={3}
                 col={3}
                 value={this.state.game.board[3][3]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={3}
                 col={4}
                 value={this.state.game.board[3][4]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={3}
                 col={5}
                 value={this.state.game.board[3][5]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={3}
                 col={6}
                 value={this.state.game.board[3][6]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={3}
                 col={7}
                 value={this.state.game.board[3][7]}
@@ -304,48 +377,56 @@ class App extends Component {
             <tr>
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={4}
                 col={0}
                 value={this.state.game.board[4][0]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={4}
                 col={1}
                 value={this.state.game.board[4][1]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={4}
                 col={2}
                 value={this.state.game.board[4][2]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={4}
                 col={3}
                 value={this.state.game.board[4][3]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={4}
                 col={4}
                 value={this.state.game.board[4][4]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={4}
                 col={5}
                 value={this.state.game.board[4][5]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={4}
                 col={6}
                 value={this.state.game.board[4][6]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={4}
                 col={7}
                 value={this.state.game.board[4][7]}
@@ -354,48 +435,56 @@ class App extends Component {
             <tr>
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={5}
                 col={0}
                 value={this.state.game.board[5][0]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={5}
                 col={1}
                 value={this.state.game.board[5][1]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={5}
                 col={2}
                 value={this.state.game.board[5][2]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={5}
                 col={3}
                 value={this.state.game.board[5][3]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={5}
                 col={4}
                 value={this.state.game.board[5][4]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={5}
                 col={5}
                 value={this.state.game.board[5][5]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={5}
                 col={6}
                 value={this.state.game.board[5][6]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={5}
                 col={7}
                 value={this.state.game.board[5][7]}
@@ -404,48 +493,56 @@ class App extends Component {
             <tr>
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={6}
                 col={0}
                 value={this.state.game.board[6][0]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={6}
                 col={1}
                 value={this.state.game.board[6][1]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={6}
                 col={2}
                 value={this.state.game.board[6][2]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={6}
                 col={3}
                 value={this.state.game.board[6][3]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={6}
                 col={4}
                 value={this.state.game.board[6][4]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={6}
                 col={5}
                 value={this.state.game.board[6][5]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={6}
                 col={6}
                 value={this.state.game.board[6][6]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={6}
                 col={7}
                 value={this.state.game.board[6][7]}
@@ -454,48 +551,56 @@ class App extends Component {
             <tr>
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={7}
                 col={0}
                 value={this.state.game.board[7][0]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={7}
                 col={1}
                 value={this.state.game.board[7][1]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={7}
                 col={2}
                 value={this.state.game.board[7][2]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={7}
                 col={3}
                 value={this.state.game.board[7][3]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={7}
                 col={4}
                 value={this.state.game.board[7][4]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={7}
                 col={5}
                 value={this.state.game.board[7][5]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={7}
                 col={6}
                 value={this.state.game.board[7][6]}
               />
               <Cell
                 checkCell={this.checkCell}
+                flagCell={this.flagCell}
                 row={7}
                 col={7}
                 value={this.state.game.board[7][7]}

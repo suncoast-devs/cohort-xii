@@ -1,44 +1,40 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+New Game
 
-## Available Scripts
+- When the user clicks the new game button
+- Use the new game API to request a new game
+  - POST /games
+  - Take what the API gives back and put that in the state
+- Display the number of the game we are playing
 
-In the project directory, you can run:
+Draw the board
 
-### `npm start`
+- DONE 8x8 grid of <tr> and <td> elements
+- DONE comes from the state, the API calls this `board` (Render based on the state)
+- DONE So for each element in the board, put
+  the appropriate character in the table
+- Update the number of mines remaining
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Check a cell
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+- Tell the API that the user checked a cell
+  - We need to tell it:
+    - id (number of the game)
+    - row
+    - col
+  - POST /games/{id}/check
+  - Take what the API gives back and put that in the state
 
-### `npm test`
+Flag a cell
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Tell the API that the user flagged a cell
 
-### `npm run build`
+  - We need to tell it:
+    - id (number of the game)
+    - row
+    - col
+  - POST /games/{id}/flag
+  - Take what the API gives back and put that in the state
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Handle a game over (display something to the user)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Handle easy/intermediate/expert

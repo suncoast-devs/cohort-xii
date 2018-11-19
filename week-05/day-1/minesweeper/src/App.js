@@ -37,12 +37,12 @@ class App extends Component {
         difficulty: this.state.difficulty
       })
       .then(response => {
-      console.log(response.data)
-      this.setState({
-        playing: true,
-        game: response.data
+        console.log(response.data)
+        this.setState({
+          playing: true,
+          game: response.data
+        })
       })
-    })
   }
 
   // Need:
@@ -51,6 +51,12 @@ class App extends Component {
   //   col: argument
   flagCell = (row, col) => {
     //- POST /games/{id}/check
+
+    // If we are not playing the game, return and do not call the API
+    if (!this.state.playing) {
+      console.log('Nope, not playing a game')
+      return
+    }
 
     axios
       .post(
@@ -76,6 +82,14 @@ class App extends Component {
   //   col: argument
   checkCell = (row, col) => {
     //- POST /games/{id}/check
+
+    // If we are not playing the game, return and do not call the API`
+
+    // Guard clause
+    if (!this.state.playing || row < 0 || col < 0) {
+      console.log('Nope, not playing a game')
+      return
+    }
 
     axios
       .post(

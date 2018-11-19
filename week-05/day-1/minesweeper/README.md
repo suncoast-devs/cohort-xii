@@ -1,7 +1,7 @@
 New Game
 
-- When the user clicks the new game button
-- Use the new game API to request a new game
+- DONE When the user clicks the new game button
+- DONE Use the new game API to request a new game
   - POST /games
   - Take what the API gives back and put that in the state
 - Display the number of the game we are playing

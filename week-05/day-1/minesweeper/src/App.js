@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import axios from 'axios'
 
 class App extends Component {
   constructor(props) {
@@ -24,6 +25,15 @@ class App extends Component {
     }
   }
 
+  newGame = event => {
+    axios.post('https://minesweeper-api.herokuapp.com/games').then(response => {
+      console.log(response.data)
+      this.setState({
+        game: response.data
+      })
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -36,7 +46,7 @@ class App extends Component {
                   <option value="1">Intermediate</option>
                   <option value="2">Expert</option>
                 </select>
-                <button>😄</button>
+                <button onClick={this.newGame}>😄</button>
               </td>
             </tr>
             <tr>

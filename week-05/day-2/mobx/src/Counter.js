@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { observer } from 'mobx-react'
 
 class Counter extends Component {
   render() {
@@ -12,4 +13,4 @@ class Counter extends Component {
   }
 }
 
-export default Counter
+export default observer(Counter)

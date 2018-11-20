@@ -3,25 +3,22 @@ import logo from './logo.svg'
 import './App.css'
 import Counter from './Counter'
 
+import { decorate, computed, observable } from 'mobx'
+import { observer } from 'mobx-react'
+
 class App extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      value: 0
-    }
+    this.value = 0
   }
 
   increment = event => {
-    this.setState({
-      value: this.state.value + 1
-    })
+    this.value++
   }
 
   decrement = event => {
-    this.setState({
-      value: this.state.value - 1
-    })
+    this.value--
   }
 
   render() {
@@ -30,21 +27,28 @@ class App extends Component {
         <Counter
           increment={this.increment}
           decrement={this.decrement}
-          value={this.state.value}
+          value={this.value}
         />
         <Counter
           increment={this.increment}
           decrement={this.decrement}
-          value={this.state.value}
+          value={this.value}
         />
         <Counter
           increment={this.increment}
           decrement={this.decrement}
-          value={this.state.value}
+          value={this.value}
         />
       </div>
     )
   }
 }
 
-export default App
+// Tell the App component that it has
+// mobx superpowers, and that the `value`
+// should be observable
+decorate(App, {
+  value: observable
+})
+
+export default observer(App)

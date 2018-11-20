@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 
+import x from './DataStore'
+
 class Counter extends Component {
   render() {
     return (
       <div>
-        <p>{this.props.value}</p>
-        <button onClick={this.props.increment}>Increment</button>
-        <button onClick={this.props.decrement}>Decrement</button>
+        <p>{x.value}</p>
+        <button onClick={x.increment}>Increment</button>
+        <button onClick={x.decrement}>Decrement</button>
       </div>
     )
   }

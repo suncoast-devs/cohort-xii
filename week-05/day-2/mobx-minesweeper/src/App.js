@@ -1,162 +1,55 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 
 import './App.css'
 
 import Cell from './Cell'
 
+import { decorate, computed, observable } from 'mobx'
+import { observer } from 'mobx-react'
+
+import ourGame from './Game'
+
 class App extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      playing: false,
-      difficulty: 0,
-
-      game: {
-        id: 1,
-        board: [
-          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-        ],
-        state: 'new',
-        mines: 10
-      }
-    }
-  }
-
-  newGame = event => {
-    axios
-      .post('https://minesweeper-api.herokuapp.com/games', {
-        difficulty: this.state.difficulty
-      })
-      .then(response => {
-        console.log(response.data)
-        this.setState({
-          playing: true,
-          game: response.data
-        })
-      })
-  }
-
-  // Need:
-  //   id:  Get from the state
-  //   row: argument
-  //   col: argument
-  flagCell = (row, col) => {
-    //- POST /games/{id}/check
-
-    // If we are not playing the game, return and do not call the API
-    if (!this.state.playing) {
-      console.log('Nope, not playing a game')
-      return
-    }
-
-    axios
-      .post(
-        `https://minesweeper-api.herokuapp.com/games/${
-          this.state.game.id
-        }/flag`,
-        {
-          id: this.state.game.id,
-          row: row,
-          col: col
-        }
-      )
-      .then(response => {
-        this.setState({
-          game: response.data
-        })
-      })
-  }
-
-  // Need:
-  //   id:  Get from the state
-  //   row: argument
-  //   col: argument
-  checkCell = (row, col) => {
-    //- POST /games/{id}/check
-
-    // If we are not playing the game, return and do not call the API`
-
-    // Guard clause
-    if (!this.state.playing || row < 0 || col < 0) {
-      console.log('Nope, not playing a game')
-      return
-    }
-
-    axios
-      .post(
-        `https://minesweeper-api.herokuapp.com/games/${
-          this.state.game.id
-        }/check`,
-        {
-          id: this.state.game.id,
-          row: row,
-          col: col
-        }
-      )
-      .then(response => {
-        this.setState({
-          game: response.data
-        })
-      })
-  }
-
   headerText = () => {
-    if (this.state.playing) {
-      if (this.state.game.state === 'won') {
+    if (ourGame.playing) {
+      if (ourGame.api.state === 'won') {
         return 'You win!'
       }
 
-      if (this.state.game.state === 'lost') {
+      if (ourGame.api.state === 'lost') {
         return 'You lose!'
       }
 
-      return `Game #${this.state.game.id}`
+      return `Game #${ourGame.api.id}`
     } else {
       return 'Start a new game!!!'
     }
   }
 
   minesText = () => {
-    if (this.state.playing) {
-      return `${this.state.game.mines} mines left`
+    if (ourGame.playing) {
+      return `${ourGame.api.mines} mines left`
     } else {
       return ''
     }
   }
 
   buttonText = () => {
-    if (this.state.game.state === 'lost') {
+    if (ourGame.api.state === 'lost') {
       return '😫'
     } else {
       return '😄'
     }
   }
 
-  chooseDifficulty = event => {
-    this.setState({
-      difficulty: parseInt(event.target.value)
-    })
-  }
-
   boardRows = () => {
-    return this.state.game.board.map((row, rowIndex) => {
+    return ourGame.api.board.map((row, rowIndex) => {
       return (
         <tr key={rowIndex}>
           {row.map((whatGoesInTheSpace, index) => {
             return (
               <Cell
                 key={index}
-                checkCell={this.checkCell}
-                flagCell={this.flagCell}
                 row={rowIndex}
                 col={index}
                 value={whatGoesInTheSpace}
@@ -169,7 +62,7 @@ class App extends Component {
   }
 
   boardSize = () => {
-    return this.state.game.board[0].length
+    return ourGame.api.board[0].length
   }
 
   render() {
@@ -180,14 +73,14 @@ class App extends Component {
             <tr>
               <td className="header" colSpan={this.boardSize()}>
                 <select
-                  value={this.state.difficulty}
-                  onChange={this.chooseDifficulty}
+                  value={ourGame.difficulty}
+                  onChange={ourGame.chooseDifficulty}
                 >
                   <option value="0">Easy</option>
                   <option value="1">Intermediate</option>
                   <option value="2">Expert</option>
                 </select>
-                <button onClick={this.newGame}>{this.buttonText()}</button>
+                <button onClick={ourGame.newGame}>{this.buttonText()}</button>
               </td>
             </tr>
             <tr>
@@ -208,4 +101,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default observer(App)

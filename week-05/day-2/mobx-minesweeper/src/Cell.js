@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
+import { decorate, computed, observable } from 'mobx'
+import { observer } from 'mobx-react'
+import ourGame from './Game'
 
 class Cell extends Component {
   checkCell = event => {
-    this.props.checkCell(this.props.row, this.props.col)
+    ourGame.checkCell(this.props.row, this.props.col)
   }
 
   flagCell = event => {
     event.preventDefault()
 
-    this.props.flagCell(this.props.row, this.props.col)
+    ourGame.flagCell(this.props.row, this.props.col)
   }
 
   cellClassName = () => {
@@ -51,4 +54,4 @@ class Cell extends Component {
   }
 }
 
-export default Cell
+export default observer(Cell)

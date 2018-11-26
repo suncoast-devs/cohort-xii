@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
+:root {
+  font: 16px / 1 sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+
+  /* Use the Permanent Marker font for all text */
+  font-family: 'Permanent Marker', cursive;
+
+  /* Give the background a nice color */
+  background-color: #f7f0da;
+
+  /* Specify a background image */
+  background-image: url('/images/stamp.svg');
+
+  /* Do not repeat the background image */
+  background-repeat: no-repeat;
+
+  /* Specify a position for the background */
+  background-position: right -25vw bottom -5vw;
+
+  /* Don't scroll the background image as the page does */
+  background-attachment: fixed;
+
+  /* Set the size of the background image */
+  background-size: 90vw;
+
+  /*
+   * Make all the elements flex, but column and centered
+   * This will put the headers and the board in the horizontal center
+  */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Turn off the margin and padding for everything */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Make the header a larger font and give some top/bottom padding */
+h1 {
+  padding: 1rem 0;
+  font-size: 6rem;
+  text-align: center;
+}
+
+/* Make the header a larger font and give some top/bottom padding */
+h2 {
+  padding: 1rem 0;
+  font-size: 3rem;
+  text-align: center;
+
+  /* Add a min-height so that when this is blank it still takes up space */
+  min-height: 3rem;
+}
+
+.row {
+  /* Flex the elements within the row */
+  display: flex;
+}
+
+.row div {
+  /* Largish centered kinda-purple font */
+  font-size: 8rem;
+  text-align: center;
+  color: rebeccapurple;
+
+  /* Set the minimum width/height for each element */
+  min-width: 150px;
+  min-height: 150px;
+
+  /* Set a line height so the text is vertically centered within that height */
+  line-height: 150px;
+
+  /* Set a border on all sides */
+  border: 5px solid #666;
+
+  /* Set the cursor to not-allowed, since we'll override this style for when
+   * the square is empty to have a 'pointer' cursor. This will have the effect
+   * of showing a not-allowed cursor when we put an X or O in the square and
+   * a pointer when it is available to click */
+  cursor: not-allowed;
+
+  /* Transition with a nice bounce effect.
+   *
+   * Since we will have a font-size of 0 for an empty square this will make
+   * text appear with a nice bounce when we assign content */
+  transition: font-size 0.7s cubic-bezier(0.43, 1.93, 0.66, 1);
+}
+
+/* Style for an empty square */
+.row div:empty {
+  font-size: 0;
+  cursor: pointer;
+}
+
+/* Style all of the squares according to their position with removing
+ * margins as appropriate */
+.row:nth-child(1) div:nth-child(1) {
+  border-top: none;
+  border-left: none;
+}
+
+.row:nth-child(1) div:nth-child(2) {
+  border-top: none;
+}
+
+.row:nth-child(1) div:nth-child(3) {
+  border-top: none;
+  border-right: none;
+}
+
+.row:nth-child(2) div:nth-child(1) {
+  border-left: none;
+}
+
+.row:nth-child(2) div:nth-child(3) {
+  border-right: none;
+}
+
+.row:nth-child(3) div:nth-child(1) {
+  border-bottom: none;
+  border-left: none;
+}
+
+.row:nth-child(3) div:nth-child(2) {
+  border-bottom: none;
+}
+
+.row:nth-child(3) div:nth-child(3) {
+  border-bottom: none;
+  border-right: none;
+}

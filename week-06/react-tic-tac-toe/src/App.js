@@ -13,6 +13,12 @@ class App extends Component {
 
   _click = event => {
     console.log('a square was clicked')
+
+    this.state.board[0] = 'X'
+
+    this.setState({
+      board: this.state.board
+    })
   }
 
   render() {

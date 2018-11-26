@@ -14,7 +14,32 @@ class App extends Component {
   }
 
   detectWinner = player => {
-    return false
+    const winningCombinations = [
+      // Horizontal
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+
+      // Vertical
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+
+      // Diagonals
+      [0, 4, 8],
+      [2, 4, 6]
+    ]
+
+    let isWinner = winningCombinations.some(combination => {
+      // combination will be like    [0, 1, 2]
+      return (
+        this.state.board[combination[0]] === player &&
+        this.state.board[combination[1]] === player &&
+        this.state.board[combination[2]] === player
+      )
+    })
+
+    return isWinner
   }
 
   detectTieGame = () => {
@@ -81,6 +106,20 @@ class App extends Component {
         board: this.state.board
       },
       () => {
+        if (this.detectWinner('X')) {
+          // say "X Wins" -- message
+          this.setState({
+            message: 'X Wins'
+          })
+        }
+
+        // Same for O
+        if (this.detectWinner('O')) {
+          // say "O Wins" -- message
+          this.setState({
+            message: 'O Wins'
+          })
+        }
         // This code is called after the state is updated
         this.detectTieGame()
       }

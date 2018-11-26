@@ -12,9 +12,9 @@ class App extends Component {
   }
 
   _click = event => {
-    console.log('a square was clicked')
+    const index = parseInt(event.target.className)
 
-    this.state.board[0] = 'X'
+    this.state.board[index] = 'X'
 
     this.setState({
       board: this.state.board
@@ -28,8 +28,12 @@ class App extends Component {
         <h2 />
         <div class="board">
           <div class="row">
-            <div onClick={this._click}>{this.state.board[0]}</div>
-            <div>{this.state.board[1]}</div>
+            <div className="0" onClick={this._click}>
+              {this.state.board[0]}
+            </div>
+            <div className="1" onClick={this._click}>
+              {this.state.board[1]}
+            </div>
             <div>{this.state.board[2]}</div>
           </div>
           <div class="row">

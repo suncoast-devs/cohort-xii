@@ -7,6 +7,7 @@ class App extends Component {
     super(props)
 
     this.state = {
+      currentPlayer: 'X',
       board: ['', '', '', '', '', '', '', '', '']
     }
   }
@@ -14,7 +15,19 @@ class App extends Component {
   _click = event => {
     const index = parseInt(event.target.dataset.index)
 
-    this.state.board[index] = 'X'
+    this.state.board[index] = this.state.currentPlayer
+
+    if (this.state.currentPlayer === 'X') {
+      this.setState({
+        currentPlayer: 'O'
+      })
+    }
+
+    if (this.state.currentPlayer === 'O') {
+      this.setState({
+        currentPlayer: 'X'
+      })
+    }
 
     this.setState({
       board: this.state.board

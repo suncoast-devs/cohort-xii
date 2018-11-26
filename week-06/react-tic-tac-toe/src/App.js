@@ -30,38 +30,21 @@ class App extends Component {
       [2, 4, 6]
     ]
 
-    let isWinner = winningCombinations.some(combination => {
-      // combination will be like    [0, 1, 2]
-      return (
+    return winningCombinations.some(
+      combination =>
         this.state.board[combination[0]] === player &&
         this.state.board[combination[1]] === player &&
         this.state.board[combination[2]] === player
-      )
-    })
-
-    return isWinner
+    )
   }
 
   detectTieGame = () => {
-    // A game where X isn't a winner
-    if (this.detectWinner('X')) {
-      // GTFO
-      return false
-    }
-
-    // A game where O isn't a winner
-    if (this.detectWinner('O')) {
-      // GTFO
-      return false
-    }
-
-    // A game where every square is occupied
-    const isEverySquareOccupied = this.state.board.every(square => {
-      return square === 'X' || square === 'O'
-    })
-
     // Return if every square is occupied without a winner (a tie)
-    return isEverySquareOccupied
+    return (
+      !this.detectWinner('X') &&
+      !this.detectWinner('O') &&
+      this.state.board.every(square => square === 'X' || square === 'O')
+    )
   }
 
   _click = event => {
@@ -80,6 +63,12 @@ class App extends Component {
     // then GTFO and don't do any of the work below
     // aka guard clause
     if (this.state.board[index] !== '') {
+      // GTFO
+      return
+    }
+
+    // Is there a winner?
+    if (this.detectWinner('X') || this.detectWinner('O')) {
       // GTFO
       return
     }
@@ -131,46 +120,25 @@ class App extends Component {
     )
   }
 
+  renderSquare = index => {
+    return (
+      <div data-index={index} onClick={this._click}>
+        {this.state.board[index]}
+      </div>
+    )
+  }
+  renderRow = row => {
+    return <div class="row">{row.map(index => this.renderSquare(index))}</div>
+  }
+
   render() {
+    const rows = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+
     return (
       <div className="App">
         <h1>Tic Tac Toe</h1>
         <h2>{this.state.message}</h2>
-        <div class="board">
-          <div class="row">
-            <div data-index="0" onClick={this._click}>
-              {this.state.board[0]}
-            </div>
-            <div data-index="1" onClick={this._click}>
-              {this.state.board[1]}
-            </div>
-            <div data-index="2" onClick={this._click}>
-              {this.state.board[2]}
-            </div>
-          </div>
-          <div class="row">
-            <div data-index="3" onClick={this._click}>
-              {this.state.board[3]}
-            </div>
-            <div data-index="4" onClick={this._click}>
-              {this.state.board[4]}
-            </div>
-            <div data-index="5" onClick={this._click}>
-              {this.state.board[5]}
-            </div>
-          </div>
-          <div class="row">
-            <div data-index="6" onClick={this._click}>
-              {this.state.board[6]}
-            </div>
-            <div data-index="7" onClick={this._click}>
-              {this.state.board[7]}
-            </div>
-            <div data-index="8" onClick={this._click}>
-              {this.state.board[8]}
-            </div>
-          </div>
-        </div>
+        <div class="board">{rows.map(row => this.renderRow(row))}</div>
       </div>
     )
   }

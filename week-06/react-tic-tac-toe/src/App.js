@@ -13,7 +13,16 @@ class App extends Component {
   }
 
   _click = event => {
+    // Be explicit and say we want numbers
     const index = parseInt(event.target.dataset.index)
+
+    // defensive programming
+    // What *IF* the dataset.index isn't
+    // really a number
+    if (isNaN(index)) {
+      // GTFO
+      return
+    }
 
     // If this position in the board already has a value
     // then GTFO and don't do any of the work below
@@ -49,7 +58,7 @@ class App extends Component {
         <h2 />
         <div class="board">
           <div class="row">
-            <div data-index="0" onClick={this._click}>
+            <div data-index="Gavin" onClick={this._click}>
               {this.state.board[0]}
             </div>
             <div data-index="1" onClick={this._click}>

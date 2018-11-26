@@ -15,6 +15,14 @@ class App extends Component {
   _click = event => {
     const index = parseInt(event.target.dataset.index)
 
+    // If this position in the board already has a value
+    // then GTFO and don't do any of the work below
+    // aka guard clause
+    if (this.state.board[index] !== '') {
+      // GTFO
+      return
+    }
+
     this.state.board[index] = this.state.currentPlayer
 
     if (this.state.currentPlayer === 'X') {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './App.css'
 
 class App extends Component {
@@ -122,13 +121,17 @@ class App extends Component {
 
   renderSquare = index => {
     return (
-      <div data-index={index} onClick={this._click}>
+      <div key={index} data-index={index} onClick={this._click}>
         {this.state.board[index]}
       </div>
     )
   }
-  renderRow = row => {
-    return <div class="row">{row.map(index => this.renderSquare(index))}</div>
+  renderRow = (row, index) => {
+    return (
+      <div key={index} className="row">
+        {row.map(index => this.renderSquare(index))}
+      </div>
+    )
   }
 
   render() {
@@ -138,7 +141,9 @@ class App extends Component {
       <div className="App">
         <h1>Tic Tac Toe</h1>
         <h2>{this.state.message}</h2>
-        <div class="board">{rows.map(row => this.renderRow(row))}</div>
+        <div className="board">
+          {rows.map((row, index) => this.renderRow(row, index))}
+        </div>
       </div>
     )
   }

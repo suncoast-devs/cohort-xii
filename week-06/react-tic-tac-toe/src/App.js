@@ -7,8 +7,12 @@ class App extends Component {
     super(props)
 
     this.state = {
-      board: ['O', '', '', '', 'O', '', '', 'X', '']
+      board: ['', '', '', '', '', '', '', '', '']
     }
+  }
+
+  _click = event => {
+    console.log('a square was clicked')
   }
 
   render() {
@@ -18,7 +22,7 @@ class App extends Component {
         <h2 />
         <div class="board">
           <div class="row">
-            <div>{this.state.board[0]}</div>
+            <div onClick={this._click}>{this.state.board[0]}</div>
             <div>{this.state.board[1]}</div>
             <div>{this.state.board[2]}</div>
           </div>

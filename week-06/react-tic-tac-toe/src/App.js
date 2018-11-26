@@ -46,13 +46,13 @@ class App extends Component {
     // A game where X isn't a winner
     if (this.detectWinner('X')) {
       // GTFO
-      return
+      return false
     }
 
     // A game where O isn't a winner
     if (this.detectWinner('O')) {
       // GTFO
-      return
+      return false
     }
 
     // A game where every square is occupied
@@ -60,11 +60,8 @@ class App extends Component {
       return square === 'X' || square === 'O'
     })
 
-    if (isEverySquareOccupied) {
-      this.setState({
-        message: 'Tie Game!'
-      })
-    }
+    // Return if every square is occupied without a winner (a tie)
+    return isEverySquareOccupied
   }
 
   _click = event => {
@@ -87,20 +84,24 @@ class App extends Component {
       return
     }
 
+    // Change the index-th element of the board to the current player
     this.state.board[index] = this.state.currentPlayer
 
+    // If X moved, then the player should be O
     if (this.state.currentPlayer === 'X') {
       this.setState({
         currentPlayer: 'O'
       })
     }
 
+    // If O moved, then the player should be X
     if (this.state.currentPlayer === 'O') {
       this.setState({
         currentPlayer: 'X'
       })
     }
 
+    // Update the board
     this.setState(
       {
         board: this.state.board
@@ -121,7 +122,11 @@ class App extends Component {
           })
         }
         // This code is called after the state is updated
-        this.detectTieGame()
+        if (this.detectTieGame()) {
+          this.setState({
+            message: 'Tie Game!'
+          })
+        }
       }
     )
   }

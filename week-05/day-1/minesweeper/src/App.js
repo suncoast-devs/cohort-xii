@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import './App.css'
 
+import Board from './Board'
 import Cell from './Cell'
 
 class App extends Component {
@@ -147,27 +148,6 @@ class App extends Component {
     })
   }
 
-  boardRows = () => {
-    return this.state.game.board.map((row, rowIndex) => {
-      return (
-        <tr key={rowIndex}>
-          {row.map((whatGoesInTheSpace, index) => {
-            return (
-              <Cell
-                key={index}
-                checkCell={this.checkCell}
-                flagCell={this.flagCell}
-                row={rowIndex}
-                col={index}
-                value={whatGoesInTheSpace}
-              />
-            )
-          })}
-        </tr>
-      )
-    })
-  }
-
   boardSize = () => {
     return this.state.game.board[0].length
   }
@@ -195,7 +175,11 @@ class App extends Component {
                 {this.headerText()}
               </td>
             </tr>
-            {this.boardRows()}
+            <Board
+              board={this.state.game.board}
+              checkCell={this.checkCell}
+              flagCell={this.flagCell}
+            />
             <tr>
               <td className="header" colSpan={this.boardSize()}>
                 {this.minesText()}

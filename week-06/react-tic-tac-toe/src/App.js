@@ -34,17 +34,31 @@ class App extends Component {
             <div data-index="1" onClick={this._click}>
               {this.state.board[1]}
             </div>
-            <div>{this.state.board[2]}</div>
+            <div data-index="2" onClick={this._click}>
+              {this.state.board[2]}
+            </div>
           </div>
           <div class="row">
-            <div>{this.state.board[3]}</div>
-            <div>{this.state.board[4]}</div>
-            <div>{this.state.board[5]}</div>
+            <div data-index="3" onClick={this._click}>
+              {this.state.board[3]}
+            </div>
+            <div data-index="4" onClick={this._click}>
+              {this.state.board[4]}
+            </div>
+            <div data-index="5" onClick={this._click}>
+              {this.state.board[5]}
+            </div>
           </div>
           <div class="row">
-            <div>{this.state.board[6]}</div>
-            <div>{this.state.board[7]}</div>
-            <div>{this.state.board[8]}</div>
+            <div data-index="6" onClick={this._click}>
+              {this.state.board[6]}
+            </div>
+            <div data-index="7" onClick={this._click}>
+              {this.state.board[7]}
+            </div>
+            <div data-index="8" onClick={this._click}>
+              {this.state.board[8]}
+            </div>
           </div>
         </div>
       </div>

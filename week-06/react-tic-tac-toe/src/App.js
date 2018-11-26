@@ -7,8 +7,38 @@ class App extends Component {
     super(props)
 
     this.state = {
+      message: 'Enjoy the game',
       currentPlayer: 'X',
       board: ['', '', '', '', '', '', '', '', '']
+    }
+  }
+
+  detectWinner = player => {
+    return false
+  }
+
+  detectTieGame = () => {
+    // A game where X isn't a winner
+    if (this.detectWinner('X')) {
+      // GTFO
+      return
+    }
+
+    // A game where O isn't a winner
+    if (this.detectWinner('O')) {
+      // GTFO
+      return
+    }
+
+    // A game where every square is occupied
+    const isEverySquareOccupied = this.state.board.every(square => {
+      return square === 'X' || square === 'O'
+    })
+
+    if (isEverySquareOccupied) {
+      this.setState({
+        message: 'Tie Game!'
+      })
     }
   }
 
@@ -46,19 +76,25 @@ class App extends Component {
       })
     }
 
-    this.setState({
-      board: this.state.board
-    })
+    this.setState(
+      {
+        board: this.state.board
+      },
+      () => {
+        // This code is called after the state is updated
+        this.detectTieGame()
+      }
+    )
   }
 
   render() {
     return (
       <div className="App">
         <h1>Tic Tac Toe</h1>
-        <h2 />
+        <h2>{this.state.message}</h2>
         <div class="board">
           <div class="row">
-            <div data-index="Gavin" onClick={this._click}>
+            <div data-index="0" onClick={this._click}>
               {this.state.board[0]}
             </div>
             <div data-index="1" onClick={this._click}>

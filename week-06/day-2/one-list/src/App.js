@@ -8,7 +8,8 @@ class App extends Component {
     super(props)
 
     this.state = {
-      todos: []
+      todos: [],
+      newItemText: ''
     }
   }
 
@@ -20,6 +21,17 @@ class App extends Component {
           todos: response.data
         })
       })
+  }
+
+  _newItem = event => {
+    console.log(this.state.newItemText)
+    event.preventDefault()
+  }
+
+  _changingText = event => {
+    this.setState({
+      newItemText: event.target.value
+    })
   }
 
   render() {
@@ -39,7 +51,14 @@ class App extends Component {
               )
             })}
           </ul>
-          <input type="text" placeholder="Whats up?" />
+          <form onSubmit={this._newItem}>
+            <input
+              value={this.state.newItemText}
+              onChange={this._changingText}
+              type="text"
+              placeholder="Whats up?"
+            />
+          </form>
         </main>
         <footer>
           <p>

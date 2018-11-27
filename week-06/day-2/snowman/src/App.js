@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
 import snowman_step_7 from './images/step_7.png'
+import words from './words.json'
 import './App.css'
 
 class App extends Component {
   constructor(props) {
     super(props)
 
+    let randomIndex = Math.floor(Math.random() * 1024)
+
     this.state = {
-      secretWord: 'knowman',
+      secretWord: words[randomIndex],
+
       // what state variable will we add to keep track of the letters chosen?
       lettersChosen: []
     }
+    console.log(words[randomIndex])
   }
 
   shouldShowLetter = letter => {

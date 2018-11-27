@@ -1,4 +1,11 @@
 import React, { Component } from 'react'
+import snowman_step_0 from './images/step_0.png'
+import snowman_step_1 from './images/step_1.png'
+import snowman_step_2 from './images/step_2.png'
+import snowman_step_3 from './images/step_3.png'
+import snowman_step_4 from './images/step_4.png'
+import snowman_step_5 from './images/step_5.png'
+import snowman_step_6 from './images/step_6.png'
 import snowman_step_7 from './images/step_7.png'
 import words from './words.json'
 import './App.css'
@@ -8,6 +15,17 @@ class App extends Component {
     super(props)
 
     let randomIndex = Math.floor(Math.random() * 1024)
+
+    this.snowmen = [
+      snowman_step_0,
+      snowman_step_1,
+      snowman_step_2,
+      snowman_step_3,
+      snowman_step_4,
+      snowman_step_5,
+      snowman_step_6,
+      snowman_step_7
+    ]
 
     this.state = {
       secretWord: words[randomIndex],
@@ -32,6 +50,10 @@ class App extends Component {
   }
 
   letterClicked = event => {
+    if (this.state.lettersChosen.includes(event.target.value)) {
+      return
+    }
+
     console.log('clicked')
     let newLettersChosen = this.state.lettersChosen
 
@@ -43,12 +65,21 @@ class App extends Component {
     })
   }
 
+  // return the snowman to show
+  whichSnowman = () => {
+    if (this.state.lettersChosen.length > 7) {
+      return this.snowmen[7]
+    } else {
+      return this.snowmen[this.state.lettersChosen.length]
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Do you want to build a Snowman?</h1>
 
-        <img src={snowman_step_7} alt="snowman" />
+        <img src={this.whichSnowman()} alt="snowman" />
         <ul>
           {this.state.secretWord.split('').map(letter => {
             return <li>{this.shouldShowLetter(letter)}</li>

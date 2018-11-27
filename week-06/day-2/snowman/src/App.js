@@ -16,6 +16,35 @@ class App extends Component {
 
     let randomIndex = Math.floor(Math.random() * 1024)
 
+    this.alphabet = [
+      'a',
+      'b',
+      'c',
+      'd',
+      'e',
+      'f',
+      'g',
+      'h',
+      'i',
+      'j',
+      'k',
+      'l',
+      'm',
+      'n',
+      'o',
+      'p',
+      'q',
+      'r',
+      's',
+      't',
+      'u',
+      'v',
+      'w',
+      'x',
+      'y',
+      'z'
+    ]
+
     this.snowmen = [
       snowman_step_0,
       snowman_step_1,
@@ -30,8 +59,32 @@ class App extends Component {
     this.state = {
       secretWord: words[randomIndex],
 
-      // what state variable will we add to keep track of the letters chosen?
-      lettersChosen: []
+      a: false,
+      b: false,
+      c: false,
+      d: false,
+      e: false,
+      f: false,
+      g: false,
+      h: false,
+      i: false,
+      j: false,
+      k: false,
+      l: false,
+      m: false,
+      n: false,
+      o: false,
+      p: false,
+      q: false,
+      r: false,
+      s: false,
+      t: false,
+      u: false,
+      v: false,
+      w: false,
+      x: false,
+      y: false,
+      z: false
     }
     console.log(words[randomIndex])
   }
@@ -41,7 +94,7 @@ class App extends Component {
 
     // if lettersChosen doeS contain letter
     // then return an letter
-    if (this.state.lettersChosen.includes(letter)) {
+    if (this.isLetterAlreadyChosen(letter)) {
       return letter
     }
 
@@ -50,28 +103,35 @@ class App extends Component {
   }
 
   letterClicked = event => {
-    if (this.state.lettersChosen.includes(event.target.value)) {
+    const letter = event.target.value
+
+    if (this.isLetterAlreadyChosen(letter)) {
       return
     }
 
-    console.log('clicked')
-    let newLettersChosen = this.state.lettersChosen
-
-    newLettersChosen.push(event.target.value)
-
     // Tell react that the state has changed
     this.setState({
-      lettersChosen: newLettersChosen
+      [letter]: true
     })
   }
 
   // return the snowman to show
   whichSnowman = () => {
-    if (this.state.lettersChosen.length > 7) {
+    const lettersAlreadyChosen = this.alphabet.filter(
+      letter => this.state[letter]
+    )
+
+    const howManyLettersChosen = lettersAlreadyChosen.length
+
+    if (howManyLettersChosen > 7) {
       return this.snowmen[7]
     } else {
-      return this.snowmen[this.state.lettersChosen.length]
+      return this.snowmen[howManyLettersChosen]
     }
+  }
+
+  isLetterAlreadyChosen = letter => {
+    return this.state[letter]
   }
 
   render() {
@@ -81,90 +141,24 @@ class App extends Component {
 
         <img src={this.whichSnowman()} alt="snowman" />
         <ul>
-          {this.state.secretWord.split('').map(letter => {
-            return <li>{this.shouldShowLetter(letter)}</li>
+          {this.state.secretWord.split('').map((letter, index) => {
+            return <li key={index}>{this.shouldShowLetter(letter)}</li>
           })}
         </ul>
 
         <div className="Alphabet">
-          <button value="a" onClick={this.letterClicked}>
-            A
-          </button>
-          <button value="b" onClick={this.letterClicked}>
-            B
-          </button>
-          <button value="c" onClick={this.letterClicked}>
-            C
-          </button>
-          <button value="d" onClick={this.letterClicked}>
-            D
-          </button>
-          <button value="e" onClick={this.letterClicked}>
-            E
-          </button>
-          <button value="f" onClick={this.letterClicked}>
-            F
-          </button>
-          <button value="g" onClick={this.letterClicked}>
-            G
-          </button>
-          <button value="h" onClick={this.letterClicked}>
-            H
-          </button>
-          <button value="i" onClick={this.letterClicked}>
-            I
-          </button>
-          <button value="j" onClick={this.letterClicked}>
-            J
-          </button>
-          <button value="k" onClick={this.letterClicked}>
-            K
-          </button>
-          <button value="l" onClick={this.letterClicked}>
-            L
-          </button>
-          <button value="m" onClick={this.letterClicked}>
-            M
-          </button>
-          <button value="n" onClick={this.letterClicked}>
-            N
-          </button>
-          <button value="o" onClick={this.letterClicked}>
-            O
-          </button>
-          <button value="p" onClick={this.letterClicked}>
-            P
-          </button>
-          <button value="q" onClick={this.letterClicked}>
-            Q
-          </button>
-          <button value="r" onClick={this.letterClicked}>
-            R
-          </button>
-          <button value="s" onClick={this.letterClicked}>
-            S
-          </button>
-          <button value="t" onClick={this.letterClicked}>
-            T
-          </button>
-          <button value="u" onClick={this.letterClicked}>
-            U
-          </button>
-          <button value="v" onClick={this.letterClicked}>
-            V
-          </button>
-          <button value="w" onClick={this.letterClicked}>
-            W
-          </button>
-          <button value="x" onClick={this.letterClicked}>
-            X
-          </button>
-          <button value="y" onClick={this.letterClicked}>
-            Y
-          </button>
-          <button value="z" onClick={this.letterClicked}>
-            Z
-          </button>
+          {this.alphabet.map((letter, index) => {
+            return (
+              <button
+                key={index}
+                value={letter}
+                disabled={this.isLetterAlreadyChosen(letter)}
+                onClick={this.letterClicked}
+              >
+                {letter}
+              </button>
+            )
+          })}
         </div>
       </div>
     )

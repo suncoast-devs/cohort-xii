@@ -9,6 +9,7 @@ import snowman_step_6 from './images/step_6.png'
 import snowman_step_7 from './images/step_7.png'
 import words from './words.json'
 import './App.css'
+import Button from './Button'
 
 class App extends Component {
   constructor(props) {
@@ -102,9 +103,7 @@ class App extends Component {
     return '_'
   }
 
-  letterClicked = event => {
-    const letter = event.target.value
-
+  letterClicked = letter => {
     if (this.isLetterAlreadyChosen(letter)) {
       return
     }
@@ -147,16 +146,16 @@ class App extends Component {
         </ul>
 
         <div className="Alphabet">
-          {this.alphabet.map((letter, index) => {
+          {this.alphabet.map((theCurrentLetterOfTheAlphabet, index) => {
             return (
-              <button
+              <Button
                 key={index}
-                value={letter}
-                disabled={this.isLetterAlreadyChosen(letter)}
-                onClick={this.letterClicked}
-              >
-                {letter}
-              </button>
+                letter={theCurrentLetterOfTheAlphabet}
+                disabled={this.isLetterAlreadyChosen(
+                  theCurrentLetterOfTheAlphabet
+                )}
+                letterClicked={this.letterClicked}
+              />
             )
           })}
         </div>

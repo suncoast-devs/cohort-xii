@@ -7,7 +7,7 @@ class App extends Component {
     super(props)
 
     this.state = {
-      secretWord: 'snowman',
+      secretWord: 'knowman',
       // what state variable will we add to keep track of the letters chosen?
       lettersChosen: []
     }
@@ -28,7 +28,14 @@ class App extends Component {
 
   letterClicked = event => {
     console.log('clicked')
-    this.state.lettersChosen.push(event.target.value)
+    let newLettersChosen = this.state.lettersChosen
+
+    newLettersChosen.push(event.target.value)
+
+    // Tell react that the state has changed
+    this.setState({
+      lettersChosen: newLettersChosen
+    })
   }
 
   render() {
@@ -38,13 +45,9 @@ class App extends Component {
 
         <img src={snowman_step_7} alt="snowman" />
         <ul>
-          <li>{this.shouldShowLetter('s')}</li>
-          <li>{this.shouldShowLetter('n')}</li>
-          <li>{this.shouldShowLetter('o')}</li>
-          <li>{this.shouldShowLetter('w')}</li>
-          <li>{this.shouldShowLetter('m')}</li>
-          <li>{this.shouldShowLetter('a')}</li>
-          <li>{this.shouldShowLetter('n')}</li>
+          {this.state.secretWord.split('').map(letter => {
+            return <li>{this.shouldShowLetter(letter)}</li>
+          })}
         </ul>
 
         <div className="Alphabet">

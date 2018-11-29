@@ -10,7 +10,10 @@ body {
   min-height: 100vh;
   justify-content: center;
   align-items: center;
-  font-size: 7rem;
+}
+
+p {
+  font-size: 8rem;
 }
 
 code {

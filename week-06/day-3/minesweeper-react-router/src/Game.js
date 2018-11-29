@@ -26,6 +26,21 @@ class Game extends Component {
         mines: 10
       }
     }
+
+    if (this.props.match.params.id) {
+      this.loadExistingGame(this.props.match.params.id)
+    }
+  }
+
+  loadExistingGame = id => {
+    axios
+      .get(`https://minesweeper-api.herokuapp.com/games/${id}`)
+      .then(response => {
+        this.setState({
+          playing: true,
+          game: response.data
+        })
+      })
   }
 
   newGame = event => {

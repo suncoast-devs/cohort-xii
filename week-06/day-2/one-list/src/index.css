@@ -73,6 +73,10 @@ form {
   opacity: 0.5;
 }
 
+.editing {
+  border: 5px solid yellow;
+}
+
 header,
 main,
 footer {

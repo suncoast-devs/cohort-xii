@@ -9,11 +9,13 @@ class App extends Component {
 
     this.state = {
       todos: [],
+      editing: false,
+      idBeingEdited: undefined,
       newItemText: ''
     }
   }
 
-  componentDidMount = () => {
+  reloadItems = () => {
     axios
       .get('https://one-list-api.herokuapp.com/items?access_token=tacotuesday')
       .then(response => {
@@ -23,8 +25,33 @@ class App extends Component {
       })
   }
 
+  componentDidMount = () => {
+    this.reloadItems()
+  }
+
   _newItem = event => {
-    console.log(this.state.newItemText)
+    if (this.state.editing) {
+      axios
+        .put(
+          `https://one-list-api.herokuapp.com/items/${
+            this.state.idBeingEdited
+          }?access_token=tacotuesday`,
+          {
+            item: {
+              complete: false,
+              text: this.state.newItemText
+            }
+          }
+        )
+        .then(response => {
+          this.setState({
+            editing: false,
+            idBeingEdited: undefined,
+            newItemText: ''
+          })
+          this.reloadItems()
+        })
+    }
     event.preventDefault()
   }
 
@@ -32,6 +59,22 @@ class App extends Component {
     this.setState({
       newItemText: event.target.value
     })
+  }
+
+  _startEdit = event => {
+    // Get the ID from the data-todid
+    const id = parseInt(event.target.dataset.todoid)
+    // use array find to get the matching todo
+    const todo = this.state.todos.find(todo => todo.id === id)
+
+    // Tell the state we are editing, and which id we are editing
+    // and the text to show in the input box
+    this.setState({
+      editing: true,
+      idBeingEdited: id,
+      newItemText: todo.text
+    })
+    event.preventDefault()
   }
 
   render() {
@@ -42,10 +85,17 @@ class App extends Component {
         </header>
         <main>
           <ul className="one-list">
-            {this.state.todos.map((todo, index) => {
+            {this.state.todos.map(todo => {
               const todoClass = todo.complete ? 'completed' : ''
+              const editingClass =
+                todo.id === this.state.idBeingEdited ? 'editing' : ''
               return (
-                <li key={index} className={todoClass}>
+                <li
+                  key={todo.id}
+                  data-todoid={todo.id}
+                  className={`${todoClass} ${editingClass}`}
+                  onContextMenu={this._startEdit}
+                >
                   {todo.text}
                 </li>
               )

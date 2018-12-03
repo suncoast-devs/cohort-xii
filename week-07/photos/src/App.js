@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <>
         <h1>Photo Gallery</h1>
-        <CategoryList />
+        <PhotoList />
       </>
     )
   }

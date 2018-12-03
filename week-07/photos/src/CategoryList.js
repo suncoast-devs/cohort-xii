@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import photos from './photos.json'
 
@@ -9,7 +10,7 @@ class CategoryList extends Component {
         {Object.keys(photos).map(category => {
           return (
             <li key={category}>
-              <a href={`/${category}`}>{photos[category].title}</a>
+              <Link to={`/${category}`}>{photos[category].title}</Link>
             </li>
           )
         })}

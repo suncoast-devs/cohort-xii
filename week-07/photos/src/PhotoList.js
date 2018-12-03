@@ -3,7 +3,7 @@ import photos from './photos.json'
 
 class PhotoList extends Component {
   render() {
-    const categoryData = photos['miniatures']
+    const categoryData = photos['pandas']
 
     return (
       <ul className="photolist">

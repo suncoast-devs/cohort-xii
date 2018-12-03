@@ -4,8 +4,10 @@ import photos from './photos.json'
 
 class PhotoDetail extends Component {
   render() {
-    const categoryData = photos['pandas']
-    const photoIndex = 1
+    const category = this.props.match.params.category
+    const photoIndex = this.props.match.params.index
+
+    const categoryData = photos[category]
 
     return (
       <>

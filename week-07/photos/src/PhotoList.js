@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
 import photos from './photos.json'
 
+import { Link } from 'react-router-dom'
+
 class PhotoList extends Component {
   render() {
-    const categoryData = photos['pandas']
+    const category = this.props.match.params.category
+    const categoryData = photos[category]
 
     return (
       <ul className="photolist">
-        {categoryData.photos.map(photo => {
+        {categoryData.photos.map((photo, index) => {
           return (
-            <li>
+            <li key={index}>
               <p>{photo.title}</p>
-              <a href={photo.sourceURL}>
+
+              <Link to={`/${category}/${index}`}>
                 <img src={photo.imageURL} />
-              </a>
+              </Link>
             </li>
           )
         })}

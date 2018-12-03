@@ -1,18 +1,13 @@
 import React, { Component } from 'react'
+import CategoryList from './CategoryList'
+import PhotoList from './PhotoList'
 
 class App extends Component {
   render() {
     return (
       <>
         <h1>Photo Gallery</h1>
-        <ul>
-          <li>
-            <a href="/pandas">Panda Bears</a>
-          </li>
-          <li>
-            <a href="/miniatures">Miniatures</a>
-          </li>
-        </ul>
+        <PhotoList />
       </>
     )
   }

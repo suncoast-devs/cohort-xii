@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
 
+import photos from './photos.json'
+
 class CategoryList extends Component {
   render() {
     return (
       <ul>
-        <li>
-          <a href="/pandas">Panda Bears</a>
-        </li>
-        <li>
-          <a href="/miniatures">Miniatures</a>
-        </li>
+        {Object.keys(photos).map(category => {
+          return (
+            <li key={category}>
+              <a href={`/${category}`}>{photos[category].title}</a>
+            </li>
+          )
+        })}
       </ul>
     )
   }

@@ -8,7 +8,8 @@ class App extends Component {
 
     this.state = {
       deck_id: '',
-      player: []
+      player: [],
+      dealer: []
     }
   }
 
@@ -27,10 +28,22 @@ class App extends Component {
         }/draw/?count=2`
       )
       .then(response => {
-        console.log(response.data.cards)
-
         const newState = {
           player: update(this.state.player, { $push: response.data.cards })
+        }
+
+        this.setState(newState)
+      })
+
+    axios
+      .get(
+        `https://deckofcardsapi.com/api/deck/${
+          this.state.deck_id
+        }/draw/?count=2`
+      )
+      .then(response => {
+        const newState = {
+          dealer: update(this.state.dealer, { $push: response.data.cards })
         }
 
         this.setState(newState)

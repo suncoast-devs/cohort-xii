@@ -90,16 +90,9 @@ class App extends Component {
             <p>Dealer Cards:</p>
             <p className="dealer-total">Facedown</p>
             <div className="dealer-hand">
-              <img
-                className="cardback-one"
-                alt="card"
-                src="./images/card back red.png"
-              />
-              <img
-                className="cardback-two"
-                alt="card"
-                src="./images/card back red.png"
-              />
+              {this.state.dealer.map((card, index) => {
+                return <img key={index} src={card.image} />
+              })}
             </div>
           </div>
         </div>

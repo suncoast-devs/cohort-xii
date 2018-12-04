@@ -14,19 +14,14 @@ class App extends Component {
     }
   }
 
-  whenNewDeckIsShuffled = () => {
-    // this will happen after state is updated
-
-    // call the API for "Draw a Card"
-    // -- draw two cards
-    // -- make sure to supply the deck_id
-    // -- console log the result to be sure it
-    // -- works the way we want
+  dealCardsToPlayer = numberOfCards => {
+    // put the axios request to get this number of cards
+    // and add to the players hand
     axios
       .get(
         `https://deckofcardsapi.com/api/deck/${
           this.state.deck_id
-        }/draw/?count=2`
+        }/draw/?count=${numberOfCards}`
       )
       .then(response => {
         const newState = {
@@ -35,6 +30,17 @@ class App extends Component {
 
         this.setState(newState)
       })
+  }
+
+  whenNewDeckIsShuffled = () => {
+    // this will happen after state is updated
+
+    // call the API for "Draw a Card"
+    // -- draw two cards
+    // -- make sure to supply the deck_id
+    // -- console log the result to be sure it
+    // -- works the way we want
+    this.dealCardsToPlayer(2)
 
     axios
       .get(
@@ -63,6 +69,12 @@ class App extends Component {
       })
   }
 
+  hit = event => {
+    console.log('HIT!')
+
+    this.dealCardsToPlayer(1)
+  }
+
   render() {
     return (
       <>
@@ -76,7 +88,9 @@ class App extends Component {
 
         <div className="play-area">
           <div className="left">
-            <button className="hit">Hit</button>
+            <button className="hit" onClick={this.hit}>
+              Hit
+            </button>
             <p>Your Cards:</p>
             <p className="player-total">Total 0</p>
             <div className="player-hand">

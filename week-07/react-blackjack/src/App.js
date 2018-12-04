@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import update from 'immutability-helper'
 
 class App extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      deck_id: ''
+      deck_id: '',
+      player: []
     }
   }
 
@@ -25,7 +27,13 @@ class App extends Component {
         }/draw/?count=2`
       )
       .then(response => {
-        console.log(response.data)
+        console.log(response.data.cards)
+
+        const newState = {
+          player: update(this.state.player, { $push: response.data.cards })
+        }
+
+        this.setState(newState)
       })
   }
 

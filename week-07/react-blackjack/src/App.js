@@ -153,6 +153,12 @@ class App extends Component {
     }
   }
 
+  renderDealerMessage = () => {
+    return this.state.dealerCardsHidden
+      ? 'Facedown'
+      : `Total: ${this.totalHand('dealer')}`
+  }
+
   render() {
     return (
       <>
@@ -184,7 +190,7 @@ class App extends Component {
               Stay
             </button>
             <p>Dealer Cards:</p>
-            <p className="dealer-total">Facedown</p>
+            <p className="dealer-total">{this.renderDealerMessage()}</p>
             <div className="dealer-hand">
               <Hand
                 hidden={this.state.dealerCardsHidden}

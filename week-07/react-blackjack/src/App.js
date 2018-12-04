@@ -167,7 +167,9 @@ class App extends Component {
           <p className="game-results">{this.state.gameResults}</p>
         </div>
         <div className="center">
-          <button className="reset hidden">Play Again!</button>
+          <button className={`reset ${this.state.playing ? 'hidden' : ''}`}>
+            Play Again!
+          </button>
         </div>
 
         <div className="play-area">

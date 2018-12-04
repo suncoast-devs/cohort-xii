@@ -4,20 +4,28 @@ import update from 'immutability-helper'
 import Hand from './Hand'
 
 class App extends Component {
+  initialState = {
+    gameResults: 'Test Your Skills',
+    playing: true,
+    dealerCardsHidden: true,
+    deck_id: '',
+    player: [],
+    dealer: []
+  }
+
   constructor(props) {
     super(props)
 
-    this.state = {
-      gameResults: 'Test Your Skills',
-      playing: true,
-      dealerCardsHidden: true,
-      deck_id: '',
-      player: [],
-      dealer: []
-    }
+    this.state = this.initialState
   }
 
   componentDidMount = () => {
+    this.startGame()
+  }
+
+  startGame = () => {
+    this.setState(this.initialState)
+
     axios
       .get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
       .then(response => {
@@ -93,7 +101,10 @@ class App extends Component {
       await this.dealCards(1, 'dealer')
     }
 
-    if (this.totalHand('dealer') > 21) {
+    if (
+      this.totalHand('dealer') > 21 ||
+      this.totalHand('player') > this.totalHand('dealer')
+    ) {
       this.setState({
         playing: false,
         gameResults: 'Player Wins!'
@@ -102,25 +113,7 @@ class App extends Component {
       return
     }
 
-    if (this.totalHand('player') > this.totalHand('dealer')) {
-      this.setState({
-        playing: false,
-        gameResults: 'Player Wins!'
-      })
-
-      return
-    }
-
-    if (this.totalHand('player') < this.totalHand('dealer')) {
-      this.setState({
-        playing: false,
-        gameResults: 'Dealer Wins!'
-      })
-
-      return
-    }
-
-    if (this.totalHand('player') === this.totalHand('dealer')) {
+    if (this.totalHand('player') <= this.totalHand('dealer')) {
       this.setState({
         playing: false,
         gameResults: 'Dealer Wins!'
@@ -133,22 +126,6 @@ class App extends Component {
   totalHand = whichHand => {
     let total = 0
     this.state[whichHand].forEach(card => {
-      // Using object lookup
-      const VALUES = {
-        ACE: 11,
-        KING: 10,
-        QUEEN: 10,
-        JACK: 10
-      }
-      total = total + (VALUES[card.value] || parseInt(card.value))
-    })
-
-    return total
-  }
-
-  totalDealerHand = () => {
-    let total = 0
-    this.state.dealer.forEach(card => {
       // Using object lookup
       const VALUES = {
         ACE: 11,
@@ -182,7 +159,10 @@ class App extends Component {
           <p className="game-results">{this.state.gameResults}</p>
         </div>
         <div className="center">
-          <button className={`reset ${this.state.playing ? 'hidden' : ''}`}>
+          <button
+            onClick={this.startGame}
+            className={`reset ${this.state.playing ? 'hidden' : ''}`}
+          >
             Play Again!
           </button>
         </div>

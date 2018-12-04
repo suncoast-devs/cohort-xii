@@ -14,7 +14,7 @@ class App extends Component {
     }
   }
 
-  dealCardsToPlayer = numberOfCards => {
+  dealCards = (numberOfCards, whichHand) => {
     // put the axios request to get this number of cards
     // and add to the players hand
     axios
@@ -25,7 +25,9 @@ class App extends Component {
       )
       .then(response => {
         const newState = {
-          player: update(this.state.player, { $push: response.data.cards })
+          [whichHand]: update(this.state[whichHand], {
+            $push: response.data.cards
+          })
         }
 
         this.setState(newState)
@@ -40,21 +42,9 @@ class App extends Component {
     // -- make sure to supply the deck_id
     // -- console log the result to be sure it
     // -- works the way we want
-    this.dealCardsToPlayer(2)
+    this.dealCards(2, 'player')
 
-    axios
-      .get(
-        `https://deckofcardsapi.com/api/deck/${
-          this.state.deck_id
-        }/draw/?count=2`
-      )
-      .then(response => {
-        const newState = {
-          dealer: update(this.state.dealer, { $push: response.data.cards })
-        }
-
-        this.setState(newState)
-      })
+    this.dealCards(2, 'dealer')
   }
 
   componentDidMount = () => {
@@ -70,9 +60,39 @@ class App extends Component {
   }
 
   hit = event => {
-    console.log('HIT!')
+    this.dealCards(1, 'player')
+  }
 
-    this.dealCardsToPlayer(1)
+  totalHand = whichHand => {
+    let total = 0
+    this.state[whichHand].forEach(card => {
+      // Using object lookup
+      const VALUES = {
+        ACE: 11,
+        KING: 10,
+        QUEEN: 10,
+        JACK: 10
+      }
+      total = total + (VALUES[card.value] || parseInt(card.value))
+    })
+
+    return total
+  }
+
+  totalDealerHand = () => {
+    let total = 0
+    this.state.dealer.forEach(card => {
+      // Using object lookup
+      const VALUES = {
+        ACE: 11,
+        KING: 10,
+        QUEEN: 10,
+        JACK: 10
+      }
+      total = total + (VALUES[card.value] || parseInt(card.value))
+    })
+
+    return total
   }
 
   render() {
@@ -92,7 +112,7 @@ class App extends Component {
               Hit
             </button>
             <p>Your Cards:</p>
-            <p className="player-total">Total 0</p>
+            <p className="player-total">Total {this.totalHand('player')} </p>
             <div className="player-hand">
               <Hand cards={this.state.player} />
             </div>

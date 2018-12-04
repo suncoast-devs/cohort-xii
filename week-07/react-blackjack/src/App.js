@@ -93,11 +93,22 @@ class App extends Component {
       await this.dealCards(1, 'dealer')
     }
 
+    if (this.totalHand('dealer') > 21) {
+      this.setState({
+        playing: false,
+        gameResults: 'Player Wins!'
+      })
+
+      return
+    }
+
     if (this.totalHand('player') > this.totalHand('dealer')) {
       this.setState({
         playing: false,
         gameResults: 'Player Wins!'
       })
+
+      return
     }
 
     if (this.totalHand('player') < this.totalHand('dealer')) {
@@ -105,6 +116,8 @@ class App extends Component {
         playing: false,
         gameResults: 'Dealer Wins!'
       })
+
+      return
     }
 
     if (this.totalHand('player') === this.totalHand('dealer')) {
@@ -112,6 +125,8 @@ class App extends Component {
         playing: false,
         gameResults: 'Dealer Wins!'
       })
+
+      return
     }
   }
 

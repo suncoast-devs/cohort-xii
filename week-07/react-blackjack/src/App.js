@@ -14,9 +14,16 @@ class App extends Component {
     axios
       .get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
       .then(response => {
-        this.setState({
+        const newState = {
           deck_id: response.data.deck_id
-        })
+        }
+
+        const afterStateIsUpdated = () => {
+          // this will happen after state is updated
+          console.log(this.state.deck_id)
+        }
+
+        this.setState(newState, afterStateIsUpdated)
       })
   }
 

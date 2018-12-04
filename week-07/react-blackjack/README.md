@@ -6,7 +6,8 @@
 
 * Deal two cards to the player
 
-- Deal two cards to the dealer (not worry about hidden cards just yet)
+* Deal two cards to the dealer (not worry about hidden cards just yet)
+
 - Totalling the player's hand
 - Totalling the dealer's hand
 - Player Hit

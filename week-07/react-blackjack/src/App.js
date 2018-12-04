@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import update from 'immutability-helper'
+import Hand from './Hand'
 
 class App extends Component {
   constructor(props) {
@@ -79,9 +80,7 @@ class App extends Component {
             <p>Your Cards:</p>
             <p className="player-total">Total 0</p>
             <div className="player-hand">
-              {this.state.player.map((card, index) => {
-                return <img key={index} src={card.image} />
-              })}
+              <Hand cards={this.state.player} />
             </div>
           </div>
 
@@ -90,9 +89,7 @@ class App extends Component {
             <p>Dealer Cards:</p>
             <p className="dealer-total">Facedown</p>
             <div className="dealer-hand">
-              {this.state.dealer.map((card, index) => {
-                return <img key={index} src={card.image} />
-              })}
+              <Hand cards={this.state.dealer} />
             </div>
           </div>
         </div>

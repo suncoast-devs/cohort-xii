@@ -42,6 +42,11 @@ class App extends Component {
   }
 
   dealCards = (numberOfCards, whichHand) => {
+    // Don't allow cards to be dealt in a game that is over
+    if (!this.state.playing) {
+      return
+    }
+
     // put the axios request to get this number of cards
     // and add to the players hand
     axios
@@ -110,6 +115,12 @@ class App extends Component {
     return total
   }
 
+  buttonClass = () => {
+    if (!this.state.playing) {
+      return 'hidden'
+    }
+  }
+
   render() {
     return (
       <>
@@ -123,7 +134,7 @@ class App extends Component {
 
         <div className="play-area">
           <div className="left">
-            <button className="hit" onClick={this.hit}>
+            <button className={`hit ${this.buttonClass()}`} onClick={this.hit}>
               Hit
             </button>
             <p>Your Cards:</p>
@@ -134,7 +145,7 @@ class App extends Component {
           </div>
 
           <div className="right">
-            <button className="stay">Stay</button>
+            <button className={`stay ${this.buttonClass()}`}>Stay</button>
             <p>Dealer Cards:</p>
             <p className="dealer-total">Facedown</p>
             <div className="dealer-hand">

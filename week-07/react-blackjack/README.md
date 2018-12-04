@@ -12,6 +12,7 @@
 * Totalling the dealer's hand
 * Player Hit
 
-- Player busting
+* Player busting
+
 - Dealer Hit
 - Win/lose

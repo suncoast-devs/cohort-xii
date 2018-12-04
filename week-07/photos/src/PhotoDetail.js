@@ -9,6 +9,19 @@ class PhotoDetail extends Component {
 
     const categoryData = photos[category]
 
+    if (!categoryData) {
+      return <p>No Such Category</p>
+    }
+
+    if (photoIndex >= categoryData.photos.length) {
+      return <p>No Such Photo</p>
+    }
+
+    const photo = categoryData.photos[photoIndex]
+    if (!photo) {
+      return <p>WAT?!?</p>
+    }
+
     return (
       <>
         <h2>{categoryData.photos[photoIndex].title}</h2>

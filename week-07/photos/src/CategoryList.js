@@ -5,9 +5,11 @@ import photos from './photos.json'
 
 class CategoryList extends Component {
   render() {
+    const categories = Object.keys(photos)
+
     return (
       <ul>
-        {Object.keys(photos).map(category => {
+        {categories.map(category => {
           return (
             <li key={category}>
               <Link to={`/${category}`}>{photos[category].title}</Link>

@@ -8,14 +8,18 @@ class PhotoList extends Component {
     const category = this.props.match.params.category
     const categoryData = photos[category]
 
+    if (!categoryData) {
+      return <p>No Such Category</p>
+    }
+
     return (
       <ul className="photolist">
         {categoryData.photos.map((photo, index) => {
           return (
             <li key={index}>
-              <p>{photo.title}</p>
-
               <Link to={`/${category}/${index}`}>
+                <p>{photo.title}</p>
+
                 <img src={photo.imageURL} />
               </Link>
             </li>

@@ -65,7 +65,11 @@ class App extends Component {
             <button className="hit">Hit</button>
             <p>Your Cards:</p>
             <p className="player-total">Total 0</p>
-            <div className="player-hand" />
+            <div className="player-hand">
+              {this.state.player.map((card, index) => {
+                return <img key={index} src={card.image} />
+              })}
+            </div>
           </div>
 
           <div className="right">

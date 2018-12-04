@@ -14,5 +14,6 @@
 
 * Player busting
 
-- Dealer Hit
+* Dealer Hit (stopping on 17)
+
 - Win/lose

@@ -10,6 +10,25 @@ class App extends Component {
     }
   }
 
+  whenNewDeckIsShuffled = () => {
+    // this will happen after state is updated
+
+    // call the API for "Draw a Card"
+    // -- draw two cards
+    // -- make sure to supply the deck_id
+    // -- console log the result to be sure it
+    // -- works the way we want
+    axios
+      .get(
+        `https://deckofcardsapi.com/api/deck/${
+          this.state.deck_id
+        }/draw/?count=2`
+      )
+      .then(response => {
+        console.log(response.data)
+      })
+  }
+
   componentDidMount = () => {
     axios
       .get('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
@@ -18,12 +37,7 @@ class App extends Component {
           deck_id: response.data.deck_id
         }
 
-        const afterStateIsUpdated = () => {
-          // this will happen after state is updated
-          console.log(this.state.deck_id)
-        }
-
-        this.setState(newState, afterStateIsUpdated)
+        this.setState(newState, this.whenNewDeckIsShuffled)
       })
   }
 

@@ -1,0 +1,21 @@
+<div class="jumbotron">
+  <h1>You have selected: {{main.selectedAlumni}}</h1>
+</div>
+
+
+<div>
+  <header>Alumni</header>
+  <input type="text" placeholder="add an alumni!"
+  ng-change="main.upperCaseNewAlumni()"
+  ng-model="main.newStudent">
+  <button ng-click="main.addAlumni()">add</button>
+  <div>
+    You are adding {{main.newStudent}}
+  </div>
+  <ul>
+    <li ng-repeat="person in main.alumni" ng-click="main.selectedStudent(person)">
+      {{person | uppercase}} graduated on 11/30/2018
+      <button ng-click="main.removeAlumin(person)">remove</button>
+    </li>
+  </ul>
+</div>

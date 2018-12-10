@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HelloWorld
 {
@@ -116,9 +118,27 @@ namespace HelloWorld
                 counter++;
             }
 
-            // functions/methods
+            // Arrays
 
+            var scores = new int[10];
+            var players = new string[] {"susan", "belle", "sammy", "jose"}; 
 
+            for (int i = 0; i < players.Length; i++)
+            {
+                System.Console.WriteLine(players[i]);
+            }
+
+            // add a player
+            var roster = new string[players.Length + 1];
+            for (int i = 0; i < players.Length; i++)
+            {
+                roster[i] = players[i];
+            }
+            roster[players.Length +1] = "toni";
+
+            // List
+            var pets = new List<string>();
+            
 
         }
     }

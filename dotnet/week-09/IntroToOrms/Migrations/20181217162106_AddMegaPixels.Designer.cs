@@ -2,15 +2,17 @@
 using IntroToOrms;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace IntroToOrms.Migrations
 {
     [DbContext(typeof(MyCamerasContext))]
-    partial class MyCamerasContextModelSnapshot : ModelSnapshot
+    [Migration("20181217162106_AddMegaPixels")]
+    partial class AddMegaPixels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

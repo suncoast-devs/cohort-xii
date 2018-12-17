@@ -2,15 +2,17 @@
 using IntroToOrms;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace IntroToOrms.Migrations
 {
     [DbContext(typeof(MyCamerasContext))]
-    partial class MyCamerasContextModelSnapshot : ModelSnapshot
+    [Migration("20181217162021_AddIsWaterProof")]
+    partial class AddIsWaterProof
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,8 +34,6 @@ namespace IntroToOrms.Migrations
                     b.Property<bool>("IsWaterProof");
 
                     b.Property<int>("MaxIso");
-
-                    b.Property<double>("MegaPixels");
 
                     b.HasKey("Id");
 

@@ -7,5 +7,9 @@ namespace IntroToOrms
         public bool IsFullFrame { get; set; }
         public int MaxIso { get; set; }
         public int FramesPerSecond { get; set; }
+
+        public bool IsWaterProof { get; set; }
+
+        public double MegaPixels { get; set; }
     }
 }

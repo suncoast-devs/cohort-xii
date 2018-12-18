@@ -30,28 +30,32 @@ class App extends Component {
   }
 
   _newItem = event => {
-    if (this.state.editing) {
-      axios
-        .put(
+    const URL = (this.state.editing) ?
           `https://one-list-api.herokuapp.com/items/${
             this.state.idBeingEdited
-          }?access_token=tacotuesday`,
-          {
-            item: {
-              complete: false,
-              text: this.state.newItemText
-            }
+          }?access_token=tacotuesday`
+          :
+          `https://one-list-api.herokuapp.com/items?access_token=tacotuesday`
+
+    const action = (this.state.editing) ? 'put': 'post'
+
+    axios[action](URL,
+        {
+          item: {
+            complete: false,
+            text: this.state.newItemText
           }
-        )
-        .then(response => {
-          this.setState({
-            editing: false,
-            idBeingEdited: undefined,
-            newItemText: ''
-          })
-          this.reloadItems()
+        }
+      )
+      .then(response => {
+        this.setState({
+          editing: false,
+          idBeingEdited: undefined,
+          newItemText: ''
         })
-    }
+        this.reloadItems()
+      })
+
     event.preventDefault()
   }
 

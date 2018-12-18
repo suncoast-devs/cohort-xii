@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace IntroToApis.Controllers
 {
     [Route("api/[controller]")]
+    // localhost:5000/api/values
     [ApiController]
     public class ValuesController : ControllerBase
     {
@@ -14,7 +15,9 @@ namespace IntroToApis.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+           // this is where we can query our database with LINQ
+           
+            return new string[] { "hello", "world" };
         }
 
         // GET api/values/5

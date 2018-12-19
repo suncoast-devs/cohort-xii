@@ -12,8 +12,8 @@
 #     - [ ] Create `GET /Search?species=lion` that returns all animals where the species name contains the species parameter
 #     - [ ] Create a `POST /Animal` endpoints that adds a animal to the database. This should take a JSON body
 #     - [ ] Create a `GET /Animal/{location}` that returns animals of only that location
-#     - [ ] Create a `PUT /Animal/{animal}` endpoint that adds 1 to the count of times seen for that animal
-#     - [ ] Create a `DELETE /Animal/{animal}` endpoint that deletes that animal from the database
+#     - [ ] Create a `PUT /Animal/{id}` endpoint that adds 1 to the count of times seen for that animal (given by id)
+#     - [ ] Create a `DELETE /Animal/{id}` endpoint that deletes that animal id from the database
 
 # This will allow us to write a sinatra app that has API routes
 require 'sinatra'
@@ -72,17 +72,30 @@ end
 
 # Create a `GET /Animal/{location}` that returns animals of only that location
 get '/Animal/:location' do
-  # Get the parameter from the URL
-  the_location_the_user_wants = params["location"]
-
   # the variable matching_animals will be an array of SeenAnimal objects
   # but only those WHERE
   # -- the column "location_of_last_seen" matches *exactly* the value in the variable `the_location_the_user_wants`
   # -- which is the parameter from the URL
-  matching_animals = SeenAnimal.where(location_of_last_seen: the_location_the_user_wants)
-
-  json matching_animals
+  json SeenAnimal.where(location_of_last_seen: params["location"])
 end
 
+# Create a `PUT /Animal/{id}` endpoint that adds 1 to the count of times seen for that animal
+put '/Animal/:id' do
+  # Find the first animal in the database where the column `species` exactly matches what is inside the variable `species`
+  # found_animal = SeenAnimal.find_by(species: params["species"])
 
+  # new_count = found_animal.count_of_times_seen + 1
 
+  # found_animal.update(count_of_times_seen: new_count)
+
+  # json found_animal
+
+  # Find the animal in the database with that id
+  found_animal = SeenAnimal.find(params["id"])
+
+  new_count = found_animal.count_of_times_seen + 1
+
+  found_animal.update(count_of_times_seen: new_count)
+
+  json found_animal
+end

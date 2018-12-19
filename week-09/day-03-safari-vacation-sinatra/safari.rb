@@ -44,11 +44,45 @@ get '/Animals' do
   # json all_the_animals_from_the_database
 end
 
+# Create `GET /Search?species=lion` that returns all animals where the species name contains the species parameter
+get '/Search' do
+  json SeenAnimal.where('species LIKE ?', "%#{params["species"]}%")
+end
 
+# Create a `POST /Animal` endpoints that adds a animal to the database. This should take a JSON body
+# JSON body looks like:
+# {
+#    "seen_animal": {
+#      "species": "Duck",
+#      "count_of_times_seen": 10,
+#      "location_of_last_seen": "Kitchen"
+#    }
+# }
+post '/Animal' do
+  # JSON.parse - Turn the string into an object. Take string that looks like JSON and turn it into a hash we can use
+  # request.body.read - Reads the body of the request, that is where the API user will put their data (e.g. when you are in postman that is where you typed your JSON)
+  animal_json_object = JSON.parse(request.body.read)
 
+  # Pass the hash we get back by accessing "seen_animal" to SeenAnimal.create which will make a new record in the database
+  animal_active_record_object = SeenAnimal.create(animal_json_object["seen_animal"])
 
+  # Make the repsonse the JSON version of that new record in the database
+  json animal_active_record_object
+end
 
+# Create a `GET /Animal/{location}` that returns animals of only that location
+get '/Animal/:location' do
+  # Get the parameter from the URL
+  the_location_the_user_wants = params["location"]
 
+  # the variable matching_animals will be an array of SeenAnimal objects
+  # but only those WHERE
+  # -- the column "location_of_last_seen" matches *exactly* the value in the variable `the_location_the_user_wants`
+  # -- which is the parameter from the URL
+  matching_animals = SeenAnimal.where(location_of_last_seen: the_location_the_user_wants)
+
+  json matching_animals
+end
 
 
 

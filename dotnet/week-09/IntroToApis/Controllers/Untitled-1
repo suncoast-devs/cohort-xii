@@ -6,4 +6,4 @@
 - [ ] Create a `POST /people` endpoints add a person to the phone book
 - [ ] Create a `GET /people/{location}` that returns people of only that location
 - [ ] Create a `PUT /people/{id}` endpoint that updates a persons information
-- [ ] Create a `DELETE /people/{id}` endpoint that deletes that people from the database
+- [X] Create a `DELETE /people/{id}` endpoint that deletes that people from the database

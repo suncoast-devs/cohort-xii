@@ -30,6 +30,14 @@ ActiveRecord::Base.establish_connection(
   database: "safari_vacation"
 )
 
+# Make a class that allows us to work with the database.
+class SeenAnimal < ActiveRecord::Base
+end
+
+# Create `GET /Animals` Endpoint that returns all animals you have seen
+get '/Animals' do
+  json "it works!"
+end
 
 
 

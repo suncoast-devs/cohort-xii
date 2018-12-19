@@ -90,12 +90,18 @@ put '/Animal/:id' do
 
   # json found_animal
 
+  # Updates the matching animals (of which there are one) and update their count of times seen in one step
+  SeenAnimal.where(id: params["id"]).update_all("count_of_times_seen = count_of_times_seen + 1")
+
   # Find the animal in the database with that id
+  json SeenAnimal.find(params["id"])
+end
+
+# Create a `DELETE /Animal/{id}` endpoint that deletes that animal id from the database
+delete '/Animal/:id' do
   found_animal = SeenAnimal.find(params["id"])
 
-  new_count = found_animal.count_of_times_seen + 1
-
-  found_animal.update(count_of_times_seen: new_count)
+  found_animal.destroy
 
   json found_animal
 end

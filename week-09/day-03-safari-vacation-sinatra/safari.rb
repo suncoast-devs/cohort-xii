@@ -36,7 +36,12 @@ end
 
 # Create `GET /Animals` Endpoint that returns all animals you have seen
 get '/Animals' do
-  json "it works!"
+  # Direct way, with no local variables
+  json SeenAnimal.all
+
+  # Retuns an object with ONE key, called `seen_animals` whose value is the array of all the animals
+  # all_the_animals_from_the_database = SeenAnimal.all
+  # json all_the_animals_from_the_database
 end
 
 

@@ -23,6 +23,16 @@ require 'sinatra/json'
 require 'sinatra/reloader' if development?
 # Requires the ActiveRecord code to work with the database
 require 'active_record'
+# Ignore CORS
+require 'rack/cors'
+
+# Allow anyone to access our API via a browser
+use Rack::Cors do |config|
+  config.allow do |allow|
+    allow.origins '*'
+    allow.resource '*'
+  end
+end
 
 # Connects ActiveRecord to our safari database
 ActiveRecord::Base.establish_connection(

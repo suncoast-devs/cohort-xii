@@ -41,7 +41,7 @@ namespace IntroToApis.Controllers
         public ActionResult<Object> DeletePerson([FromRoute]int id)
         {
             Console.WriteLine($"Delete the person: {id}");
-            
+
             var db = new PhoneBookContext();
             var personToDelete = db.Person.FirstOrDefault(person => person.Id == id);
             if (personToDelete != null)
@@ -54,6 +54,44 @@ namespace IntroToApis.Controllers
             {
                 return new { message = "Person is not found" };
             }
+        }
+
+
+        // GET /api/people/anyone/out/there
+
+
+        [HttpGet("anyone/{direction}/there")]
+        public ActionResult<string> GetResult([FromRoute] string direction)
+        {
+            return "Nope, there is no one over " + direction;
+        }
+
+
+
+        [HttpPut("{id}")]
+        public ActionResult UpdatePerson([FromRoute]int id, [FromBody]Person newInformation)
+        {
+            var db = new PhoneBookContext();
+            // find the person
+            var person = db.Person.FirstOrDefault(f => f.Id == id);
+            if (person != null)
+            {
+                // update the information
+                person.PhoneNumber = newInformation.PhoneNumber;
+                person.FullName = newInformation.FullName;
+                person.City = newInformation.City;
+
+                //save changes
+                db.SaveChanges();
+            }
+            else
+            {
+                // do something on not found
+                return NotFound();
+            }
+
+
+            return Ok(person);
         }
     }
 }

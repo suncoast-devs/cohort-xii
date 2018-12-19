@@ -1,9 +1,0 @@
-
-## Requirements
-
-- [X] Create `GET /people` Endpoint that returns all people in the phonebook
-- [ ] Create `GET /Search?name=paul` that returns all people what have the name containing paul
-- [ ] Create a `POST /people` endpoints add a person to the phone book
-- [ ] Create a `GET /people/{location}` that returns people of only that location
-- [ ] Create a `PUT /people/{id}` endpoint that updates a persons information
-- [X] Create a `DELETE /people/{id}` endpoint that deletes that people from the database

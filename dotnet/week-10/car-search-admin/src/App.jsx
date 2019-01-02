@@ -5,11 +5,14 @@ import './App.css';
 class App extends Component {
 
   state = {
-    allCars: []
+    allCars: [],
+    allDealers:[]
   }
 
   componentDidMount() {
     this.loadAllCars();
+    // GET all the dealers, (API call)
+    this.loadDealers();
   }
 
   loadAllCars = () => {
@@ -17,6 +20,15 @@ class App extends Component {
       .then(resp => {
         this.setState({
           allCars: resp.data
+        })
+      })
+  }
+
+  loadDealers = () => {
+    axios.get("https://localhost:5001/api/dealer")
+      .then(resp => {
+        this.setState({
+          allDealers: resp.data
         })
       })
   }
@@ -48,11 +60,19 @@ class App extends Component {
     })
   }
 
+  handleDropDownChange = (e) => {
+    console.log({ selected: e.target.value });
+    // add selected dealer to state
+    this.setState({
+      dealerId: e.target.value
+    })
+  }
+
   render() {
     return (
       <div className="App">
 
-{/* <input type="radio" name="demo" value="one" id="radio-one" className="form-radio"/><label htmlFor="radio-one">Radio</label> */}
+        {/* <input type="radio" name="demo" value="one" id="radio-one" className="form-radio"/><label htmlFor="radio-one">Radio</label> */}
 
         <br />
 
@@ -60,8 +80,15 @@ class App extends Component {
           <input type="text" placeholder="Year" name="year" onChange={this.handleChange} />
           <input type="text" placeholder="Color" name="color" onChange={this.handleChange} />
           <input type="number" placeholder="CurrentMilage" name="currentMilage" onChange={this.handleChange} />
-          <input type="checkbox" name="isNew" onChange={this.handleCheckBoxChange}/> Is New
-          <input type="number" placeholder="Dealer Id" name="dealerId" onChange={this.handleChange} />
+          <input type="checkbox" name="isNew" onChange={this.handleCheckBoxChange} /> Is New
+          {/* <input type="number" placeholder="Dealer Id" name="dealerId" onChange={this.handleChange} /> */}
+          <select name="dealerId" onChange={this.handleDropDownChange}>
+            {/* // display all the dealers */}
+            <option value="0">Select a Dealer</option>
+            {this.state.allDealers.map(dealer => {
+              return <option value={dealer.id} key={dealer.id}>{dealer.name}</option>
+            })}
+          </select>
           <input type="number" placeholder="Model Id" name="modelId" onChange={this.handleChange} />
           <br />
           <button>Add Car</button>

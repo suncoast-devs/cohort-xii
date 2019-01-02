@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace carsearchapi.Models
 {
     public class Dealer
@@ -9,5 +11,7 @@ namespace carsearchapi.Models
         public string State { get; set; }
         public string Zip { get; set; }
         public string PhoneNumber { get; set; }
+
+        public List<Car> Cars { get; set; } = new List<Car>();
     }
 }

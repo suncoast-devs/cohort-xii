@@ -8,5 +8,12 @@ namespace carsearchapi.Models
         public int CurrentMilage { get; set; }
         public bool IsNew { get; set; }
 
+        // Navigation Properties
+        public int ModelId { get; set; }
+        public Model Model { get; set; }
+
+        public int? DealerId { get; set; }
+        public Dealer Dealer { get; set; }
+
     }
 }

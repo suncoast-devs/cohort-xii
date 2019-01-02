@@ -5,5 +5,16 @@
   <%= @make.company_name %>
 </p>
 
+<% if @make.models.any? %>
+  <p>List of models:</p>
+  <ul>
+    <% @make.models.each do |model| %>
+      <li><%= model.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>This company has no cars -- <%= link_to 'Create a new model', new_model_path %> </p>
+<% end %>
+
 <%= link_to 'Edit', edit_make_path(@make) %> |
 <%= link_to 'Back', makes_path %>

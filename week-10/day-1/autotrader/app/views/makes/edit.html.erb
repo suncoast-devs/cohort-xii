@@ -2,5 +2,31 @@
 
 <%= render 'form', make: @make %>
 
+<p>List of models:</p>
+<ul>
+  <% @make.models.each do |model| %>
+    <li><%= model.name %></li>
+  <% end %>
+</ul>
+
+<hr/>
+<h2>Create a new <%= @make.company_name %> model</h2>
+
+<%= form_with(model: @make.models.new, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :make_id %>
+    <%= form.collection_select(:make_id, Make.all, :id, :company_name) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
 <%= link_to 'Show', @make %> |
 <%= link_to 'Back', makes_path %>

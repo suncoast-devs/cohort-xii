@@ -1,3 +1,5 @@
 json.extract! make, :id, :company_name
-json.url make_url(make, format: :json)
-json.capitalized_name make.company_name.upcase.gsub(' ', '')
+json.model_count make.models.count
+json.models make.models,
+            partial: 'models/model',
+            as: :model

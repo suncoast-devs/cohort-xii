@@ -4,8 +4,18 @@ class MakesController < ApplicationController
   # GET /makes
   # GET /makes.json
   def index
+    filter = params[:filter]
+
+    all_makes = Make.all.order(:company_name)
+
+    if filter
+      @makes = all_makes.
+                 where("company_name like ?", "%#{filter}%")
+    else
+      @makes = all_makes
+    end
+
     @brand = "Suncoast Cars"
-    @makes = Make.all
   end
 
   # GET /makes/1

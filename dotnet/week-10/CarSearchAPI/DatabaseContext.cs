@@ -42,6 +42,20 @@ namespace carsearchapi
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
+
+            modelBuilder.Entity<Dealer>().HasData(
+                new Dealer { Id = -1, Name = "Bongos Cars", Zip = "33707" }
+            );
+            modelBuilder.Entity<Make>().HasData(
+                            new Make { Id = -1, Name = "Toyota", },
+                            new Make { Id = -2, Name = "Honda", }
+                        );
+
+            modelBuilder.Entity<Model>().HasData(
+                            new Model { Id = -1, Name = "Prius", MakeId = -1 },
+                            new Model { Id = -2, Name = "Camry" , MakeId = -1}
+                        );
+
         }
 
         public DbSet<Car> Cars { get; set; }

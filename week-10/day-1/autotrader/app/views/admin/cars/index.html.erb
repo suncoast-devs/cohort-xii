@@ -26,9 +26,9 @@
         <td><%= car.interior_color %></td>
         <td><%= car.exterior_color %></td>
         <td><%= car.model.make.company_name %> - <%= car.model.name %></td>
-        <td><%= link_to 'Show', car %></td>
-        <td><%= link_to 'Edit', edit_car_path(car) %></td>
-        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [:admin, car] %></td>
+        <td><%= link_to 'Edit', edit_admin_car_path(car) %></td>
+        <td><%= link_to 'Destroy', [:admin, car], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Car', new_car_path %>
+<%= link_to 'New Car', new_admin_car_path %>

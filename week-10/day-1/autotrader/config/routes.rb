@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     get 'cars/index'
+    get 'cars/search'
   end
 
   namespace :admin do

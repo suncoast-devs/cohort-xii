@@ -44,7 +44,11 @@ class Api::CarsController < ApplicationController
   def create
     @car = Car.create(car_params)
 
-    render json: @car
+    if @car.valid?
+      render json: @car
+    else
+      render json: @car.errors
+    end
   end
 
   private

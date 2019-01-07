@@ -31,6 +31,8 @@ class App extends Component {
   }
 
   _searchByZipCode = event => {
+    event.preventDefault()
+
     console.log(this.state.zipcode)
     axios
       .get(`/api/cars/search?zipcode=${this.state.zipcode}`)
@@ -76,11 +78,6 @@ class App extends Component {
                   Home <span className="sr-only">(current)</span>
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/admin/makes">
-                  Admin Makes
-                </a>
-              </li>
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
@@ -91,41 +88,35 @@ class App extends Component {
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  Dropdown
+                  Admin
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a className="dropdown-item" href="#">
-                    Action
+                  <a className="dropdown-item" href="/admin/makes">
+                    Makes
                   </a>
-                  <a className="dropdown-item" href="#">
-                    Another action
+                  <a className="dropdown-item" href="/admin/models">
+                    Models
                   </a>
                   <div className="dropdown-divider" />
-                  <a className="dropdown-item" href="#">
-                    Something else here
+                  <a className="dropdown-item" href="/admin/cars">
+                    Cars
                   </a>
                 </div>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link disabled"
-                  href="#"
-                  tabIndex="-1"
-                  aria-disabled="true"
-                >
-                  Disabled
-                </a>
               </li>
             </ul>
             <form className="form-inline my-2 my-lg-0">
               <input
                 className="form-control mr-sm-2"
                 type="search"
+                value={this.state.zipcode}
+                onChange={this._zipcode}
                 placeholder="Search"
                 aria-label="Search"
               />
+
               <button
                 className="btn btn-outline-success my-2 my-sm-0"
+                onClick={this._searchByZipCode}
                 type="submit"
               >
                 Search
@@ -134,11 +125,9 @@ class App extends Component {
           </div>
         </nav>
         <div className="jumbotron">
-          <h1 className="display-4">Auto Trader</h1>
+          <h3 className="display-7">Auto Trader</h3>
           <p className="lead">Welcome to our car listing site</p>
         </div>
-
-        <CreateCar />
 
         <ul className="list-group">
           {this.state.cars.map(car => (
@@ -159,28 +148,7 @@ class App extends Component {
           ))}
         </ul>
 
-        <div className="card">
-          <div className="card-body">
-            <p>Search:</p>
-            <input
-              type="text"
-              value={this.state.zipcode}
-              onChange={this._zipcode}
-              placeholder="zipcode"
-            />
-            <div className="btn-group" role="group" aria-label="Search/All">
-              <button
-                className="btn btn-primary"
-                onClick={this._searchByZipCode}
-              >
-                Search
-              </button>
-              <button className="btn btn-primary" onClick={this._all}>
-                ALL
-              </button>
-            </div>
-          </div>
-        </div>
+        <CreateCar />
       </div>
     )
   }

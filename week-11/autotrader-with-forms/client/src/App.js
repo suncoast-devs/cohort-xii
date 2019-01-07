@@ -50,6 +50,7 @@ class App extends Component {
     // POST that object to the API
     axios.post("/api/cars/create", formData).then(response => {
       this._all()
+      form.reset()
     })
   }
 

@@ -1,4 +1,6 @@
 class Api::CarsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  
   def index
     @cars = Car.all
 
@@ -37,6 +39,17 @@ class Api::CarsController < ApplicationController
         value_for_money: car.price.to_f / car.milage,
       }
     }
+  end
 
+  def create
+    @car = Car.create(car_params)
+
+    render json: @car
+  end
+
+  private
+
+  def car_params
+    params.require(:car).permit(:zipcode, :price, :milage, :body_style, :interior_color, :exterior_color, :model_id)
   end
 end

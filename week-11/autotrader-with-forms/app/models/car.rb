@@ -1,5 +1,5 @@
 class Car < ApplicationRecord
-  belongs_to :model
+  belongs_to :model, required: false
 
   validates :zipcode, presence: true
   validates :price, presence: true, numericality: true

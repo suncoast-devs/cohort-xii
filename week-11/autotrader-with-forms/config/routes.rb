@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     get 'cars/index'
     get 'cars/search'
+    post 'cars/create'
   end
 
   namespace :admin do

@@ -1,5 +1,6 @@
 class Car < ApplicationRecord
   belongs_to :model, required: false
+  has_one_attached :picture
 
   validates :zipcode, presence: true
   validates :price, presence: true, numericality: true

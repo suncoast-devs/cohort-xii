@@ -84,6 +84,15 @@ class CreateCar extends Component {
             name="car[model_id]"
           />
         </div>
+        <div className="form-group">
+          <label hmlFor="picture">Picture of your car</label>
+          <input
+            type="file"
+            className="form-control"
+            id="picture"
+            name="car[picture]"
+          />
+        </div>
         <button type="submit" className="btn btn-primary">
           Submit
         </button>

@@ -70,7 +70,7 @@ module Admin
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def car_params
-        params.require(:car).permit(:zipcode, :price, :milage, :body_style, :interior_color, :exterior_color, :model_id)
+        params.require(:car).permit(:zipcode, :price, :milage, :body_style, :interior_color, :exterior_color, :model_id, :picture)
       end
   end
 end

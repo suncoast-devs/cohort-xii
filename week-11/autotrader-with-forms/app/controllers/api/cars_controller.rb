@@ -16,6 +16,10 @@ class Api::CarsController < ApplicationController
         model_name: car.model.name,
         make: car.model.make.company_name,
         value_for_money: car.price.to_f / car.milage,
+        picture: {
+          thumbnail: url_for(car.picture.variant(resize: "75x75")),
+          fullsize: url_for(car.picture),
+        }
       }
     }
   end
@@ -54,6 +58,6 @@ class Api::CarsController < ApplicationController
   private
 
   def car_params
-    params.require(:car).permit(:zipcode, :price, :milage, :body_style, :interior_color, :exterior_color, :model_id)
+    params.require(:car).permit(:zipcode, :price, :milage, :body_style, :interior_color, :exterior_color, :model_id, :picture)
   end
 end

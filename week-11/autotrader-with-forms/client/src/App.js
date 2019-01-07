@@ -8,7 +8,8 @@ class App extends Component {
 
     this.state = {
       cars: [],
-      zipcode: ''
+      zipcode: '',
+      showingFullsize: false
     }
   }
 
@@ -19,6 +20,10 @@ class App extends Component {
         cars: response.data
       })
     })
+  }
+
+  handleClickThumbnail = event => {
+    this.setState({ showingFullsize: !this.state.showingFullsize })
   }
 
   _zipcode = event => {
@@ -139,6 +144,17 @@ class App extends Component {
           {this.state.cars.map(car => (
             <li key={car.id} className="list-group-item">
               {car.make} {car.model_name} ${car.price} - ${car.value_for_money}
+              <img
+                onClick={this.handleClickThumbnail}
+                className="float-right"
+                src={car.picture.thumbnail}
+              />
+              <img
+                className={`float-right ${
+                  this.state.showingFullsize ? '' : 'hidden'
+                } `}
+                src={car.picture.fullsize}
+              />
             </li>
           ))}
         </ul>

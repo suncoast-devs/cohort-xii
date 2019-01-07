@@ -46,6 +46,11 @@
     <%= form.collection_select(:model_id, Model.all, :id, :name) %>
   </div>
 
+  <div class="field">
+    <%= form.label :picture %>
+    <%= form.file_field :picture %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

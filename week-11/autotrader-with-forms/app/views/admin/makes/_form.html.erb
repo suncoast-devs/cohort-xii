@@ -1,4 +1,4 @@
-<%= form_with(model: make, local: true) do |form| %>
+<%= form_with(model: [:admin, make], local: true) do |form| %>
   <% if make.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(make.errors.count, "error") %> prohibited this make from being saved:</h2>

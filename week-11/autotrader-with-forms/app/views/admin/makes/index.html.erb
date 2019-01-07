@@ -18,9 +18,9 @@
         <td><%= make.company_name %></td>
         <td><%= make.models.count %></td>
         <td><%= make.cars.count %></td>
-        <td><%= link_to 'Show', make %></td>
-        <td><%= link_to 'Edit', edit_make_path(make) %></td>
-        <td><%= link_to 'Destroy', make, method: :delete, data: { confirm: 'Are you REALLY REALLY sure?' } %></td>
+        <td><%= link_to 'Show', [:admin, make] %></td>
+        <td><%= link_to 'Edit', edit_admin_make_path(make) %></td>
+        <td><%= link_to 'Destroy', [:admin, make], method: :delete, data: { confirm: 'Are you REALLY REALLY sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Make', new_make_path %>
+<%= link_to 'New Make', new_admin_make_path %>

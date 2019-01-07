@@ -12,7 +12,7 @@
 <hr/>
 <h2>Create a new <%= @make.company_name %> model</h2>
 
-<%= form_with(model: @make.models.new, local: true) do |form| %>
+<%= form_with(model: [:admin, @make.models.new], local: true) do |form| %>
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
@@ -28,5 +28,5 @@
   </div>
 <% end %>
 
-<%= link_to 'Show', @make %> |
-<%= link_to 'Back', makes_path %>
+<%= link_to 'Show', [:admin, @make] %> |
+<%= link_to 'Back', admin_makes_path %>

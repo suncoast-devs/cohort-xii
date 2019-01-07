@@ -13,8 +13,8 @@
     <% end %>
   </ul>
 <% else %>
-  <p>This company has no cars -- <%= link_to 'Create a new model', new_model_path %> </p>
+  <p>This company has no cars -- <%= link_to 'Create a new model', new_admin_model_path %> </p>
 <% end %>
 
-<%= link_to 'Edit', edit_make_path(@make) %> |
-<%= link_to 'Back', makes_path %>
+<%= link_to 'Edit', edit_admin_make_path(@make) %> |
+<%= link_to 'Back', admin_makes_path %>

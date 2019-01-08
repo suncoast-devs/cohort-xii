@@ -1,0 +1,12 @@
+/Users/markdewey/lecture/cohort-xii/dotnet/week-11/OopLevel2/bin/Debug/netcoreapp3.0/OopLevel2
+/Users/markdewey/lecture/cohort-xii/dotnet/week-11/OopLevel2/bin/Debug/netcoreapp3.0/OopLevel2.deps.json
+/Users/markdewey/lecture/cohort-xii/dotnet/week-11/OopLevel2/bin/Debug/netcoreapp3.0/OopLevel2.runtimeconfig.json
+/Users/markdewey/lecture/cohort-xii/dotnet/week-11/OopLevel2/bin/Debug/netcoreapp3.0/OopLevel2.runtimeconfig.dev.json
+/Users/markdewey/lecture/cohort-xii/dotnet/week-11/OopLevel2/bin/Debug/netcoreapp3.0/OopLevel2.dll
+/Users/markdewey/lecture/cohort-xii/dotnet/week-11/OopLevel2/bin/Debug/netcoreapp3.0/OopLevel2.pdb
+/Users/markdewey/lecture/cohort-xii/dotnet/week-11/OopLevel2/obj/Debug/netcoreapp3.0/OopLevel2.csprojAssemblyReference.cache
+/Users/markdewey/lecture/cohort-xii/dotnet/week-11/OopLevel2/obj/Debug/netcoreapp3.0/OopLevel2.csproj.CoreCompileInputs.cache
+/Users/markdewey/lecture/cohort-xii/dotnet/week-11/OopLevel2/obj/Debug/netcoreapp3.0/OopLevel2.AssemblyInfoInputs.cache
+/Users/markdewey/lecture/cohort-xii/dotnet/week-11/OopLevel2/obj/Debug/netcoreapp3.0/OopLevel2.AssemblyInfo.cs
+/Users/markdewey/lecture/cohort-xii/dotnet/week-11/OopLevel2/obj/Debug/netcoreapp3.0/OopLevel2.dll
+/Users/markdewey/lecture/cohort-xii/dotnet/week-11/OopLevel2/obj/Debug/netcoreapp3.0/OopLevel2.pdb

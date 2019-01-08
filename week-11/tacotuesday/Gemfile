@@ -42,3 +42,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "rack-cors", "~> 1.0"
+
+gem "awesome_print", "~> 1.8"

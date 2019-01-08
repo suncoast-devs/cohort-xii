@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import LocationMap from './LocationMap'
 
 class App extends Component {
   constructor(props) {
@@ -28,6 +29,9 @@ class App extends Component {
             </li>
           ))}
         </ul>
+        <div className="map">
+          <LocationMap locations={this.state.locations} />
+        </div>
       </>
     )
   }

@@ -14,6 +14,6 @@
   - Hours : text
   - Picture of the building (active storage attachment)
   - Rating (1-5) stars : integer
-  - belongs_to :taco_company
+  - company belongs_to
 
 Taco Company Location --- belongs to --- a specific taco company

@@ -4,16 +4,16 @@
 
 * Taco Company
 
-  - Address (corporate)
-  - Name
-  - Year founded
-  - Logo
+  - Address (corporate) : string
+  - Name : string
+  - Year founded : integer
+  - Logo (active storage attachment)
 
 * Taco Company Locations
-  - Address
-  - Hours
-  - Picture of the building
-  - Rating (1-5) stars
+  - Address : string
+  - Hours : text
+  - Picture of the building (active storage attachment)
+  - Rating (1-5) stars : integer
   - belongs_to :taco_company
 
 Taco Company Location --- belongs to --- a specific taco company

@@ -11,6 +11,10 @@ class CreateCar extends Component {
     // Bundle up all the fields in that form into one object
     const formData = new FormData(form)
 
+    for(let pair of formData.entries()) {
+      console.log(pair[0]+ ', '+ pair[1]);
+    }
+
     // POST that object to the API
     axios.post('/api/cars/create', formData).then(response => {
       console.log(response)

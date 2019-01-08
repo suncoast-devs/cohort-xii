@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import CreateCar from './CreateCar'
+import Map from './Map'
 
 class App extends Component {
   constructor(props) {
@@ -149,6 +150,7 @@ class App extends Component {
         </ul>
 
         <CreateCar />
+        <Map />
       </div>
     )
   }

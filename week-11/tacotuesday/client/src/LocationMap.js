@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MapGL, { Marker, Popup, NavigationControl } from 'react-map-gl'
 import pin from './pin.png'
+import userPin from './user-pin.png'
 
 class LocationMap extends Component {
   constructor(props) {
@@ -35,7 +36,10 @@ class LocationMap extends Component {
         longitude={popupInfo.longitude}
         latitude={popupInfo.latitude}
         closeOnClick={false}
-        onClose={() => this.setState({ popupInfo: null })}
+        onClose={() => {
+          this.props.onClickMarker(null)
+          this.setState({ popupInfo: null })
+        }}
       >
         <div>
           <p>{popupInfo.company_name}</p>
@@ -46,6 +50,22 @@ class LocationMap extends Component {
     )
   }
 
+  renderUserMarker = () => {
+    if (!this.props.userLocation) {
+      return
+    }
+
+    return (
+      <Marker
+        longitude={this.props.userLocation.longitude}
+        latitude={this.props.userLocation.latitude}
+        offsetTop={-64}
+        offsetLeft={-32}
+      >
+        <img width="64" height="64" src={userPin} />
+      </Marker>
+    )
+  }
   render() {
     const { viewport } = this.state
 
@@ -71,6 +91,8 @@ class LocationMap extends Component {
 
         {this.renderPopup()}
 
+        {this.renderUserMarker()}
+
         {this.props.locations.map(location => {
           return (
             <Marker
@@ -81,8 +103,12 @@ class LocationMap extends Component {
               offsetLeft={-32}
             >
               <img
-                onClick={() => this.setState({ popupInfo: location })}
+                onClick={() => {
+                  this.props.onClickMarker(location)
+                  this.setState({ popupInfo: location })
+                }}
                 width="64"
+                height="64"
                 src={pin}
               />
             </Marker>

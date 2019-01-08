@@ -66,6 +66,11 @@ class LocationMap extends Component {
       </Marker>
     )
   }
+
+  _userClicked = event => {
+    console.log('The user clicked at', event.lngLat)
+  }
+
   render() {
     const { viewport } = this.state
 
@@ -84,6 +89,7 @@ class LocationMap extends Component {
         mapStyle="mapbox://styles/mapbox/dark-v9"
         mapboxApiAccessToken="pk.eyJ1IjoiZ2F2aW5zdGFyayIsImEiOiIxZjVmODFhYWQ2NjIyZGY1MTQ5MzM3ZTE2MWNkMDkxMiJ9.HG1IbUfea4FfcJ0WrY7Pqg"
         onViewportChange={this._updateViewport}
+        onClick={this._userClicked}
       >
         <div className="nav" style={navStyle}>
           <NavigationControl onViewportChange={this._updateViewport} />

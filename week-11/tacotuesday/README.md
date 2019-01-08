@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- App for tracking taco companies and their various locations
 
-Things you may want to cover:
+* Taco Company
 
-* Ruby version
+  - Address (corporate)
+  - Name
+  - Year founded
+  - Logo
 
-* System dependencies
+* Taco Company Locations
+  - Address
+  - Hours
+  - Picture of the building
+  - Rating (1-5) stars
+  - belongs_to :taco_company
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Taco Company Location --- belongs to --- a specific taco company

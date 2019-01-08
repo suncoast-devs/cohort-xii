@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All the car makes <%= @brand %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Company name</th>
+      <th>Number of models</th>
+      <th>Inventory</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @makes.each do |make| %> 
+      <tr>
+        <td><%= make.company_name %></td>
+        <td><%= make.models.count %></td>
+        <td><%= make.cars.count %></td>
+        <td><%= link_to 'Show', make %></td>
+        <td><%= link_to 'Edit', edit_make_path(make) %></td>
+        <td><%= link_to 'Destroy', make, method: :delete, data: { confirm: 'Are you REALLY REALLY sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Make', new_make_path %>

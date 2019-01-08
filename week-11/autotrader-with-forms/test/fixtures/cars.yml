@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  zipcode: MyString
+  price: 1
+  milage: 1
+  body_style: MyString
+  interior_color: MyString
+  exterior_color: MyString
+  model: one
+
+two:
+  zipcode: MyString
+  price: 1
+  milage: 1
+  body_style: MyString
+  interior_color: MyString
+  exterior_color: MyString
+  model: two

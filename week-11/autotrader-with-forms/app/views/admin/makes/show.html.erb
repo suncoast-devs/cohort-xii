@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company name:</strong>
+  <%= @make.company_name %>
+</p>
+
+<% if @make.models.any? %>
+  <p>List of models:</p>
+  <ul>
+    <% @make.models.each do |model| %>
+      <li><%= model.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>This company has no cars -- <%= link_to 'Create a new model', new_admin_model_path %> </p>
+<% end %>
+
+<%= link_to 'Edit', edit_admin_make_path(@make) %> |
+<%= link_to 'Back', admin_makes_path %>

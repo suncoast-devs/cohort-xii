@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Zipcode:</strong>
+  <%= @car.zipcode %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @car.price %>
+</p>
+
+<p>
+  <strong>Milage:</strong>
+  <%= @car.milage %>
+</p>
+
+<p>
+  <strong>Body style:</strong>
+  <%= @car.body_style %>
+</p>
+
+<p>
+  <strong>Interior color:</strong>
+  <%= @car.interior_color %>
+</p>
+
+<p>
+  <strong>Exterior color:</strong>
+  <%= @car.exterior_color %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @car.model.make.company_name %> - <%= @car.model.name %>
+</p>
+
+<%= image_tag @car.picture.variant(resize: "75!x75!") %>
+
+<%= link_to 'Edit', edit_admin_car_path(@car) %> |
+<%= link_to 'Back', admin_cars_path %>

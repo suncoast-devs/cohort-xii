@@ -22,17 +22,18 @@ namespace content.Controllers
 
 
         [HttpGet]
-        public ActionResult<List<Car>> GetAllCars(){
-              
-              var results = this.db.Cars
-                .Include(car => car.Dealer)
-                .Include(car => car.Model)
-                    .ThenInclude(carModel => carModel.Make)
-                .OrderBy(car => car.Year)
-                    .ThenBy(car => car.Model.Name)
-                    .ThenBy(car => car.Model.Make.Name);
+        public async Task<ActionResult<List<Car>>> GetAllCars()
+        {
 
-            return results.ToList();
+            var results = this.db.Cars
+              .Include(car => car.Dealer)
+              .Include(car => car.Model)
+                  .ThenInclude(carModel => carModel.Make)
+              .OrderBy(car => car.Year)
+                  .ThenBy(car => car.Model.Name)
+                  .ThenBy(car => car.Model.Make.Name);
+
+            return await results.ToListAsync();
         }
 
         // POST /api/car 
@@ -47,10 +48,10 @@ namespace content.Controllers
             }
          */
         [HttpPost]
-        public ActionResult<Car> Post([FromBody] Car newCar)
+        public async Task<ActionResult<Car>> Post([FromBody] Car newCar)
         {
             this.db.Cars.Add(newCar);
-            this.db.SaveChanges();
+            await this.db.SaveChangesAsync();
             return newCar;
         }
 

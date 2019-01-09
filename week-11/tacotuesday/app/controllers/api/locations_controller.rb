@@ -21,6 +21,7 @@ class Api::LocationsController < ApplicationController
           hours: location.hours,
           latitude: location.latitude,
           longitude: location.longitude,
+          image: url_for(location.image)
         }
       end
     }

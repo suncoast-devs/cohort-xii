@@ -1,7 +1,14 @@
 class Api::LocationsController < ApplicationController
   def index
-    # get all the locations
-    all_the_locations = Location.all
+    latitude = params[:latitude]
+    longitude = params[:longitude]
+
+    if latitude && longitude
+      all_the_locations = Location.near([latitude, longitude])
+    else
+      # get all the locations
+      all_the_locations = Location.all
+    end
 
     # make some json to return
     render json: {
@@ -14,6 +21,7 @@ class Api::LocationsController < ApplicationController
           hours: location.hours,
           latitude: location.latitude,
           longitude: location.longitude,
+          image: url_for(location.image)
         }
       end
     }

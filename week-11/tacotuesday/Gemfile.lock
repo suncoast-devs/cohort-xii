@@ -51,6 +51,8 @@ GEM
     concurrent-ruby (1.1.4)
     crass (1.0.4)
     erubi (1.8.0)
+    faker (1.9.1)
+      i18n (>= 0.7)
     ffi (1.10.0)
     geocoder (1.5.0)
     globalid (0.4.1)
@@ -134,6 +136,7 @@ DEPENDENCIES
   awesome_print (~> 1.8)
   bootsnap (>= 1.1.0)
   byebug
+  faker (~> 1.9)
   geocoder (~> 1.5)
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)

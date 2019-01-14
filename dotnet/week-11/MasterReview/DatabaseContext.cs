@@ -48,6 +48,7 @@ namespace content
 
         public DbSet<Team> Teams { get; set; }
         public DbSet<Player> Players { get; set; }
+        public DbSet<TeamLogo> TeamLogos { get; set; }
 
     }
 }

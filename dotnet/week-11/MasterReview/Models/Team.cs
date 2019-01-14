@@ -11,7 +11,8 @@ namespace MasterReview.Models
 
         public string Name { get; set; }
 
-        public string LogoUrl { get; set; }
+        public int TeamLogoId { get; set; }
+        public TeamLogo TeamLogo { get; set; }
 
         public List<Player> Players { get; set; } = new List<Player>();
     }

@@ -11,6 +11,7 @@ namespace MasterReview.ImageUtilities
     public interface IImageWriter
     {
         Task<string> UploadImage(IFormFile file);
+        void DeleteFile(string path);
     }
 
     public class ImageWriter : IImageWriter
@@ -41,6 +42,12 @@ namespace MasterReview.ImageUtilities
             }
 
             return WriterHelper.GetImageFormat(fileBytes) != WriterHelper.ImageFormat.unknown;
+        }
+
+
+        public void DeleteFile(string path)
+        {
+            File.Delete(path);
         }
 
         /// <summary>

@@ -4,7 +4,9 @@ import axios from 'axios';
 
 class Teams extends Component {
 
-    state = {}
+    state = {
+        newLogo:{}
+    }
 
     handleUpdate = (e) => {
         this.setState({
@@ -27,7 +29,7 @@ class Teams extends Component {
         }).then(resp => {
             console.log({ resp });
             this.setState({
-                newImage:resp.data.secure_url
+                newLogo:resp.data
             })
 
         })
@@ -64,7 +66,7 @@ class Teams extends Component {
                 </form>
 
                 <section>
-                    <img src={this.state.newImage} className="img-fluid" />
+                    <img src={this.state.newLogo.imageUrl} className="img-fluid" />
                 </section>
                 <section>
                     {/* TODO: add all teams */}

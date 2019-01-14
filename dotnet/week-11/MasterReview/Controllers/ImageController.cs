@@ -24,7 +24,8 @@ namespace content.Controllers
         public async Task<ActionResult> ImageUpload(IFormFile file)
         {
             var filePath = await imageWriter.UploadImage(file);
-            return Ok(filePath);
+            var results = new CloudinaryHelper().UploadFile(filePath);
+            return Ok(results);
         }
 
     }

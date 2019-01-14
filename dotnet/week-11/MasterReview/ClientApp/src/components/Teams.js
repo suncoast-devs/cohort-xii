@@ -26,6 +26,10 @@ class Teams extends Component {
             },
         }).then(resp => {
             console.log({ resp });
+            this.setState({
+                newImage:resp.data.secure_url
+            })
+
         })
 
     }
@@ -58,6 +62,10 @@ class Teams extends Component {
 
                     <button>Add Team</button>
                 </form>
+
+                <section>
+                    <img src={this.state.newImage} className="img-fluid" />
+                </section>
                 <section>
                     {/* TODO: add all teams */}
                 </section>

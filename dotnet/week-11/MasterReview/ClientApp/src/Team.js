@@ -15,7 +15,18 @@ class Team extends Component {
     render() {
         return (
             <div>
-                This my 1 team page for {this.state.teamName}!!!
+               <form>
+                   <label>Team Name</label>
+                   <input type="text" placeholder="Team Name" />
+
+                   <label>Team Name</label>
+                   <input type="file" placeholder="Team Name" />
+
+                   <button>Add Team</button>
+               </form>
+               <section>
+                   {/* TODO: add all teams */}
+               </section>
             </div>
         );
     }
